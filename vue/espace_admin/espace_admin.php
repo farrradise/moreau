@@ -1,4 +1,4 @@
-<?php include('vue/header.php') ?>
+<?php include('vue/includes/header.php') ?>
 <div class="nav-content">
   <ul class="tabs tabs-transparent">
     <li class="tab"><a href="#test1">Test 1</a></li>

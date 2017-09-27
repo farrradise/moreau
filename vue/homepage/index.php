@@ -1,3 +1,3 @@
-<?php include('vue/header.php') ?>
+<?php include('vue/includes/header.php') ?>
       </header>
-<?php include('vue/footer.php') ?>
+<?php include('vue/includes/footer.php') ?>
