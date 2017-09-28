@@ -1,0 +1,92 @@
+body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/*HEADER*/
+.brand-logo h1 {
+  font-size: 35px;
+  margin-top: 10px;
+  padding-left: 15px;
+}
+
+.nav-wrapper {
+  min-height: 85px;
+}
+
+/*LOGIN MODAL */
+
+#login .modal-content {
+  position: relative;
+}
+
+#login form {
+  width: 100%;
+  text-align: center;
+}
+
+
+#login label{
+  color : white;
+  font-size: 1.2em;
+  margin:0!important;
+}
+
+.modal-content > a:first-of-type, .modal-content h3:nth-of-type(2)  {
+  text-align: center;
+  width: 100%;
+}
+
+#login label input {
+  color: grey;
+  background-color: white;
+}
+
+#login .modal-close {
+  position: absolute;
+  top: 20px;
+  width: 40px;
+  right: 20px;
+
+}
+
+
+/*FORMULAIRE DINSCRIPTION */
+.form_inscription > *{
+  text-align: center;
+  margin: 30px;
+}
+
+
+/*FOOTER */
+footer {
+  /*position: absolute;*/
+  margin-top: auto;
+  /*bottom: 0;*/
+  /*border: 1px solid red;*/
+  width: 100vw;
+  /*color : black;*/
+}
+
+
+
+@media(min-width:990px) {
+/*HEADER*/
+
+  .brand-logo h1 {
+    font-size: 45px;
+    margin-top: 40px;
+    padding-left: 35px;
+  }
+
+  header nav.teal .nav-wrapper {
+    min-height: 135px;
+  }
+
+  #nav-mobile li {
+    margin: 25px;
+  }
+
+}
