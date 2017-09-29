@@ -61,6 +61,7 @@ if (isset($_GET['length']) AND $_GET['length'] == 'wrong') {
 
   <div class="grey white-text wrong wrongmail">
     Le mot de passe est trop court,
+    <br> il doit contenir au moins 6 caractères.
     <br> Veuillez recommencer.
   </div>
 
