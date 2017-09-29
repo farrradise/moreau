@@ -4,7 +4,7 @@ $(document).ready(function(){
   });
 
 
-$( document ).ready(function(){
+$(document).ready(function(){
      $(".button-collapse").sideNav();
      $(".button-collapse").click(function(){
      $('#mobile-demo').animate({left: '315px'});
@@ -20,3 +20,8 @@ $('.datepicker').pickadate({
    close: 'Ok',
    closeOnSelect: false // Close upon selecting a date,
  });
+
+
+ setTimeout(function () {
+     $(".wrong").hide()
+ }, 6000);

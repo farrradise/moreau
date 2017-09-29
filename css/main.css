@@ -59,6 +59,20 @@ body {
   margin: 30px;
 }
 
+.wrong {
+  font-weight: bold;
+  padding: 10px!important;
+  border-radius: 10px;
+  position: absolute;
+  text-align: center;
+  right: 15px;
+  top: 25vh;
+}
+
+.wrong.wrongmail {
+top: 35vh;
+}
+
 
 /*FOOTER */
 footer {

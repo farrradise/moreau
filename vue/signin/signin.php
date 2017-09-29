@@ -42,4 +42,32 @@ SI pas encore loger, demander à se loger, si session ouverte, faire un lien cla
       </main>
 
 
-<?php include('../../vue/includes/footer.php') ?>
+<?php
+
+
+if (isset($_GET['info']) AND $_GET['info'] == 'wrong') {
+?>
+
+  <div class="grey white-text wrong">
+    L'email renseigné a déjà été utilisé,
+    <br> Veuillez recommencer.
+  </div>
+
+<?php
+}
+
+if (isset($_GET['length']) AND $_GET['length'] == 'wrong') {
+?>
+
+  <div class="grey white-text wrong wrongmail">
+    Le mot de passe est trop court,
+    <br> Veuillez recommencer.
+  </div>
+
+<?php
+}
+
+include('../../vue/includes/footer.php')
+
+
+?>

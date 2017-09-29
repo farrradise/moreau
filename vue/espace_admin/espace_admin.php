@@ -1,9 +1,7 @@
-
-
 <?php
-include_once('../../vue/includes/header.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php');
  ?>
- 
+
  <div class="nav-content">
  <ul class="tabs tabs-transparent">
  <li class="tab"><a href="#test1">Test 1</a></li>
@@ -21,10 +19,8 @@ include_once('../../vue/includes/header.php');
 
 
 
-<!--
-ICI je vais devoir mettre un modal selon la situation (dans le cotroller donc)
-SI pas encore loger, demander à se loger, si session ouverte, faire un lien classique de l'icone -->
-<?php //include('../../vue/includes/modal_login.php') ?>
+
+<!-- ICI je vais devoir mettre un modal selon la situation (dans le controler donc) -->
 <?php include($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/modal_logout.php')?>
       </header>
-<?php include('../../vue/includes/footer.php') ?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/footer.php') ?>
