@@ -8,38 +8,34 @@ isset($_POST["email"]) AND $_POST["email"] != "" AND
 isset($_POST["mdp"]) AND $_POST["mdp"] != "" AND
 isset($_POST["mdp2"]) AND $_POST["mdp"] === $_POST["mdp2"]
 ) {
-
-
-
 // enlever les balises + crypter le mdp
-$nom = htmlspecialchars($_POST['nom']) ;
-$prenom = htmlspecialchars($_POST['prenom']);
-$mail = htmlspecialchars($_POST['email']);
-$mdp = password_hash(htmlspecialchars($_POST['mdp']), PASSWORD_DEFAULT);
+  $nom = htmlspecialchars($_POST['nom']) ;
+  $prenom = htmlspecialchars($_POST['prenom']);
+  $mail = htmlspecialchars($_POST['email']);
+  $mdp = password_hash(htmlspecialchars($_POST['mdp']), PASSWORD_DEFAULT);
 
+  include($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/model/signin/add_account.php');
 
-include($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/model/signin/add_account.php');
+  // recuperer la liste des mails existants
+  $mail_list = existing_mail();
+  $existingmail = false;
 
-// recuperer la liste des mails existants
-$mail_list = existing_mail();
-$existingmail = false;
-
-// faire une boucle pour voir si le mail renseigner est unique
-foreach($mail_list as $cle => $unmail)
-{
-  // print_r($mail_list[$cle]['email']);
-  // echo "<br>";
-  if ($mail == $mail_list[$cle]['email']) {
-    $existingmail = true;
-    break;
+  // faire une boucle pour voir si le mail renseigner est unique
+  foreach($mail_list as $cle => $unmail)
+  {
+    // print_r($mail_list[$cle]['email']);
+    // echo "<br>";
+    if ($mail == $mail_list[$cle]['email']) {
+      $existingmail = true;
+      break;
+    }
   }
-}
 
-$tooshort = false;
+  $tooshort = false;
 
-if ($mdplength < 5) {
-  $tooshort = true;
-}
+  if ($mdplength < 5) {
+    $tooshort = true;
+  }
 
 // si mail déjà existant, prevenir l'user sinon le renvoyer sur son espace d'administration en ouvrant une session
   if ($existingmail == true OR $tooshort == true) {
@@ -55,10 +51,13 @@ if ($mdplength < 5) {
     header('Location: http://localhost/moreauandsons/controler/espace_admin/espace_admin.php');
   }
 }
+else {
+  header('Location: http://localhost/moreauandsons/controler/signin/signin.php?complete=wrong');
+}
+
 
 
 // boolean password_verify ( string $password , string $hash )
 
 
-// PSEUDO CODE
 // mettre des regex pour verifier les passwords et mail et nom et prenom

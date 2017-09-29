@@ -6,8 +6,8 @@
                 <a href="#!" class="modal-action modal-close"><i class="fa fa-times fa-2x" aria-hidden="true"></i></a>
               </div>
               <div class="modal-content">
-                <form class="" action="controler/signin/signin.php" method="post">
-                  <label for="pseudo">Pseudo <input class="teal-text text-darken-1" type="text" name="pseudo"></label><br>
+                <form class="" action="http://localhost/moreauandsons/controler/signin/login_.php" method="post">
+                  <label for="email">Email <input class="teal-text text-darken-1" type="text" name="email"></label><br>
                   <label for="mdp">Mot de Passe <input class="teal-text text-darken-1" type="password" name="mdp"></label> <br>
                   <input class="btn teal darken-1" type="submit" name="" value="OK">
                 </form>
@@ -15,3 +15,7 @@
                 <a class="btn teal darken-1" href="http://localhost/moreauandsons/controler/signin/signin.php">S'inscrire</a>
               </div>
             </div>
+
+
+<!-- http://localhost/moreauandsons/controler/signin/signin_.php -->
+<!-- http://localhost/moreauandsons/controler/signin/signin_.php -->

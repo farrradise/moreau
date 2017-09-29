@@ -23,5 +23,5 @@ $('.datepicker').pickadate({
 
 
  setTimeout(function () {
-     $(".wrong").hide()
+     $(".wrong").fadeOut(300)
  }, 6000);

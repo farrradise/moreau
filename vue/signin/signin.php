@@ -68,6 +68,19 @@ if (isset($_GET['length']) AND $_GET['length'] == 'wrong') {
 <?php
 }
 
+
+if (isset($_GET['complete']) AND $_GET['complete'] == 'wrong') {
+?>
+
+  <div class="red white-text wrong">
+    Vous n'avez pas rempli tous les champs,
+    <br> ou les mots de passe ne matchent pas.
+    <br> Veuillez recommencer.
+  </div>
+
+<?php
+}
+
 include('../../vue/includes/footer.php')
 
 

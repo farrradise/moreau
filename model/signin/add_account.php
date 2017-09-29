@@ -44,3 +44,8 @@ function existing_mail()
 
     return $mail_list;
 }
+
+function register()
+{
+  
+}
