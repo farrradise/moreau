@@ -12,7 +12,7 @@ isset($_POST["mdp2"]) AND $_POST["mdp"] === $_POST["mdp2"]
   $nom = htmlspecialchars($_POST['nom']) ;
   $prenom = htmlspecialchars($_POST['prenom']);
   $mail = htmlspecialchars($_POST['email']);
-  $mdp = password_hash(htmlspecialchars($_POST['mdp']), PASSWORD_DEFAULT);
+  $mdp = sha1(htmlspecialchars($_POST['mdp']));
 
   include($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/model/signin/add_account.php');
 
@@ -20,11 +20,9 @@ isset($_POST["mdp2"]) AND $_POST["mdp"] === $_POST["mdp2"]
   $mail_list = existing_mail();
   $existingmail = false;
 
-  // faire une boucle pour voir si le mail renseigner est unique
+  // faire une boucle pour voir si le mail renseigné est unique
   foreach($mail_list as $cle => $unmail)
   {
-    // print_r($mail_list[$cle]['email']);
-    // echo "<br>";
     if ($mail == $mail_list[$cle]['email']) {
       $existingmail = true;
       break;
@@ -54,10 +52,5 @@ isset($_POST["mdp2"]) AND $_POST["mdp"] === $_POST["mdp2"]
 else {
   header('Location: http://localhost/moreauandsons/controler/signin/signin.php?complete=wrong');
 }
-
-
-
-// boolean password_verify ( string $password , string $hash )
-
 
 // mettre des regex pour verifier les passwords et mail et nom et prenom

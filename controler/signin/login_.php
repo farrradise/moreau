@@ -4,38 +4,54 @@
 if (isset($_POST["email"]) AND isset($_POST["mdp"])) {
 
   include($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/model/signin/add_account.php');
-  $mdp = password_hash(htmlspecialchars($_POST['mdp']), PASSWORD_DEFAULT);
+  // enlever les balises html et hasher le mdp renseingé
+  $mdp = sha1(htmlspecialchars($_POST['mdp']));
+  $mail = htmlspecialchars($_POST['email']);
 
-  // recuperer la liste des mails existants
+  // recuperer la liste des mails existants et verifier que le mail renseigné existe dans la BDD
   $mail_list = existing_mail();
-  $existingmail = false;
-  $mail = $_POST['email'];
+  foreach ($mail_list as $key => $value) {
+    $realmail = $mail_list[$key]['email'];
+    break;
+  }
 
-  // faire une boucle pour voir si le mail renseigner est unique
-  foreach($mail_list as $cle => $unmail)
-  {
-    echo 'cle = '. $cle . '<br>';
-    if ($mail == $mail_list[$cle]['email']) {
-      $existingmail = true;
-      break;
+
+
+  // REQUETE QUI DEMANDE DE RECUPERER LE MDP DE LEMAIL CORRESPONDANT
+  $check_mdp = check_mdp($mail);
+  foreach ($check_mdp as $key => $value) {
+    $realpassword = $check_mdp[$key]['password'];
+    break;
+  }
+
+
+    if ($mail == $realmail AND $mdp == $realpassword) {
+      // ici demarrer la session avec une variable superglobale
+      header('Location: http://localhost/moreauandsons/controler/espace_admin/espace_admin.php');
+    } else {
+      echo 'email ou mot de passe incorrect';
+      // renvoyer vers la page d'accueil avec une bulle d'info
     }
   }
 
-  if ($existingmail == false) {
-    echo 'votre mail ne correspond a aucun profil';
-  } else {
-    echo 'bravo';
-  }
+// }
+
+  // si false cela veut dire que le mail n'existe pas il faut recommencer
+  // if ($existingmail == false AND $motdepasse != true) {
+  //   echo 'votre mail ne correspond a aucun profil, ou le mdp est erroné';
+  // } else {
+  //   echo 'bravo';
+  // }
+
+  // var_dump($mdp);
+  // echo '<br> et mot de passe <br> ';
+  // print_r($lemotdepasse);
+
 
 // pseudo code
 // OK verifier que le mail existe dans la BDD
-// une fois la requete réalisé crypter le mdp renseigner
+// OK une fois la requete réalisé crypter le mdp renseigné
 // et le comparer au mdp de l'entrée du mail avec un WHERE mail =
 
 
-// isset($_POST["mdp2"]) AND $_POST["mdp"] === $_POST["mdp2"]
-
-}
-// enlever les balises + crypter le mdp
-  // $nom = htmlspecialchars($_POST['nom']) ;
-  // $prenom = htmlspecialchars($_POST['prenom']);
+// }

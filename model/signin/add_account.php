@@ -47,5 +47,25 @@ function existing_mail()
 
 function register()
 {
-  
+
+}
+
+
+
+function check_mdp($mail)
+{
+    global $bdd;
+
+    // il s'agit d'un tableau qui contient l'information du mdp correspondant au mail (normalement)
+    // $mdpcheck = 1;
+
+    $req = $bdd -> prepare('SELECT password FROM admins WHERE email =:email');
+    $req -> execute(array('email'=>$mail));
+    $mdpcheck = $req->fetchAll();
+
+    // while ($password = $req->fetch())
+    // {
+    //   //  echo "<p> " . $password['password'] . ' a dépensé ' . $info['prixMoyen']. ' € pour l\'acquisition des ses jeux. </p>';
+    // }
+    return $mdpcheck;
 }
