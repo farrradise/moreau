@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 
 // verification des informations bien rentrées
 if (isset($_POST["email"]) AND isset($_POST["mdp"])) {
@@ -7,9 +7,11 @@ if (isset($_POST["email"]) AND isset($_POST["mdp"])) {
   // enlever les balises html et hasher le mdp renseingé
   $mdp = sha1(htmlspecialchars($_POST['mdp']));
   $mail = htmlspecialchars($_POST['email']);
+  $realmail = "";
+  $realpassword = "";
 
   // recuperer la liste des mails existants et verifier que le mail renseigné existe dans la BDD
-  $mail_list = existing_mail();
+  $mail_list = existing_mail($mail);
   foreach ($mail_list as $key => $value) {
     $realmail = $mail_list[$key]['email'];
     break;
@@ -25,33 +27,21 @@ if (isset($_POST["email"]) AND isset($_POST["mdp"])) {
   }
 
 
+  // REQUETE QUI DEMANDE DE RECUPERER LE PRENOM DE LEMAIL CORRESPONDANT
+  $admin_name = get_name($mail);
+  foreach ($admin_name as $key => $value) {
+    $admin_name = $admin_name[$key]['prenom'];
+    echo $admin_name;
+    break;
+  }
+
+
     if ($mail == $realmail AND $mdp == $realpassword) {
       // ici demarrer la session avec une variable superglobale
+      $_SESSION['prenom'] = $admin_name;
       header('Location: http://localhost/moreauandsons/controler/espace_admin/espace_admin.php');
     } else {
       echo 'email ou mot de passe incorrect';
       // renvoyer vers la page d'accueil avec une bulle d'info
     }
   }
-
-// }
-
-  // si false cela veut dire que le mail n'existe pas il faut recommencer
-  // if ($existingmail == false AND $motdepasse != true) {
-  //   echo 'votre mail ne correspond a aucun profil, ou le mdp est erroné';
-  // } else {
-  //   echo 'bravo';
-  // }
-
-  // var_dump($mdp);
-  // echo '<br> et mot de passe <br> ';
-  // print_r($lemotdepasse);
-
-
-// pseudo code
-// OK verifier que le mail existe dans la BDD
-// OK une fois la requete réalisé crypter le mdp renseigné
-// et le comparer au mdp de l'entrée du mail avec un WHERE mail =
-
-
-// }

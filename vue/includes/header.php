@@ -1,3 +1,4 @@
+<?php //session_start();?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,9 +29,9 @@
             <a href="/moreauandsons/index.php" class="brand-logo"><h1>MOREAU&Sons</h1></a>
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-              <li><a href="#login" class="modal-trigger"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a></li>
+              <li><span style="position : absolute; bottom : 0; line-height : 20px;">Bonjour JaSfdrra</span><a href="#login" class="modal-trigger"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a></li>
             </ul>
             <ul class="side-nav" id="mobile-demo">
-              <li><a href="#login" class="modal-trigger"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a></li>
+              <li><span style="position : absolute; bottom : 0; line-height : 20px;">Bonjour JaSfdrra</span> <a href="#login" class="modal-trigger"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a></li>
             </ul>
           </div>
