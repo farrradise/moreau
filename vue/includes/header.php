@@ -1,4 +1,3 @@
-<?php //session_start();?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -29,9 +28,24 @@
             <a href="/moreauandsons/index.php" class="brand-logo"><h1>MOREAU&Sons</h1></a>
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-              <li><span style="position : absolute; bottom : 0; line-height : 20px;">Bonjour JaSfdrra</span><a href="#login" class="modal-trigger"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a></li>
+              <li>
+                <a href="#login" class="modal-trigger">
+                  <a href=<?php if (isset($_SESSION["prenom"])) {echo '"http://localhost/moreauandsons/controler/espace_admin/espace_admin.php"';} else {echo '"#login"';}?> class="modal-trigger">
+                    <span style="line-height : 10px;">
+                    <?php if (isset($_SESSION["prenom"])){echo $_SESSION['prenom']. ' ';} ?>
+                    </span>
+                  <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+                </a>
+              </li>
             </ul>
-            <ul class="side-nav" id="mobile-demo">
-              <li><span style="position : absolute; bottom : 0; line-height : 20px;">Bonjour JaSfdrra</span> <a href="#login" class="modal-trigger"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a></li>
+            <ul id="mobile-demo" class="side-nav">
+              <li>
+                <a href=<?php if (isset($_SESSION["prenom"])) {echo '"http://localhost/moreauandsons/controler/espace_admin/espace_admin.php"';} else {echo '"#login"';}?> class="modal-trigger">
+                  <span style="line-height : 10px;" class="teal-text">
+                  <?php if (isset($_SESSION["prenom"])){echo $_SESSION['prenom']. ' ';} ?>
+                  </span> <br>
+                  <i class="fa fa-user fa-2x teal-text" aria-hidden="true"></i>
+                </a>
+              </li>
             </ul>
           </div>

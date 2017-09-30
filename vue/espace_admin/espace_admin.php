@@ -11,7 +11,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
 </ul>
 </div>
 </nav>
-<div id="encours" class="col s12">Test 1 <?php echo $_SESSION['prenom'];?></div>
+<div id="encours" class="col s12">Test 1 </div>
 <div id="creation" class="col s12">Test 2</div>
 <div id="archives" class="col s12">Test 4</div>
 </header>
