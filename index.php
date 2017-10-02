@@ -1,6 +1,5 @@
 <?php session_start();
 $_SESSION['admin'] = "off";
-echo "oui";
 
 include_once('model/connexion_sql.php');
 

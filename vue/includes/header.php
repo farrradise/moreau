@@ -27,7 +27,7 @@
             <ul id="nav-mobile" class="right hide-on-med-and-down">
               <li>
                 <a href="#login" class="modal-trigger">
-                  <a href=<?php if (isset($_SESSION["prenom"]) AND $_SESSION['admin'] == "off") {echo '"http://localhost/moreauandsons/controler/espace_admin/espace_admin.php"';} else { $_SESSION['admin'] = "off"; echo '"#login"';}?> class="modal-trigger">
+                  <a href=<?php if (isset($_SESSION["prenom"]) AND $_SESSION['admin'] == 'off') {echo '"http://localhost/moreauandsons/controler/espace_admin/espace_admin.php"';} else { echo '"#login"';}?> class="modal-trigger">
                     <span style="line-height : 10px;">
                     <?php if (isset($_SESSION["prenom"])){echo $_SESSION['prenom']. ' ';} ?>
                     </span>

@@ -3,7 +3,7 @@
     <div class="modal-content">
       <h4>Se déconnecter</h4>
 
-        <form class="logout" action="http://localhost/moreauandsons/controler/signin/login_.php" method="post">
+        <form class="logout" action="http://localhost/moreauandsons/controler/signin/logout_.php" method="post">
           <div class="">
             Êtes-vous sûr ???
           </div>
