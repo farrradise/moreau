@@ -2,7 +2,7 @@
      <div class="container">
        <div class="row">
          <div class="col l6 s12">
-           <h5 class="white-text">Des questions ? </h5>
+           <h5 class="white-text">Des questions ? qsdsqds</h5>
            <p class="grey-text text-lighten-4">Cette interface est à destination
              du personnel de l'entreprise, si vous êtes un particulier ou l'un de nos clients, rendez-vous sur ce site.
              <br>
@@ -22,7 +22,7 @@
      </div>
      <div class="footer-copyright">
        <div class="container">
-       © 2017 Créé par Farrah dans le cadre de la formation Simplon
+       © 2017 Créé par Farrrah dans le cadre de la formation Simplon
        <a class="grey-text text-lighten-4 right" href="#!">Mentions légales</a>
        </div>
      </div>

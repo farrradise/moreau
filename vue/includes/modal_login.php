@@ -15,7 +15,3 @@
                 <a class="btn teal darken-1" href="http://localhost/moreauandsons/controler/signin/signin.php">S'inscrire</a>
               </div>
             </div>
-
-
-<!-- http://localhost/moreauandsons/controler/signin/signin_.php -->
-<!-- http://localhost/moreauandsons/controler/signin/signin_.php -->
