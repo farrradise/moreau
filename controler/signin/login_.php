@@ -39,9 +39,9 @@ if (isset($_POST["email"]) AND isset($_POST["mdp"])) {
     if ($mail == $realmail AND $mdp == $realpassword) {
       // ici demarrer la session avec une variable superglobale
       $_SESSION['prenom'] = $admin_name;
+      $_SESSION['admin'] = "on";
       header('Location: http://localhost/moreauandsons/controler/espace_admin/espace_admin.php');
     } else {
-      echo 'email ou mot de passe incorrect';
-      // renvoyer vers la page d'accueil avec une bulle d'info
+      header('Location: http://localhost/moreauandsons/controler/homepage/index.php?id=wrong');
     }
   }

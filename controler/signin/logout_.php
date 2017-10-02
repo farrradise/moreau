@@ -11,4 +11,7 @@ if (isset($_POST["deconnexion"])) {
   } elseif ($_POST['deconnexion'] == 'non') {
     header('Location: http://localhost/moreauandsons/controler/espace_admin/espace_admin.php');
   }
+} else {
+  header('Location: http://localhost/moreauandsons/controler/espace_admin/espace_admin.php');
+
 }

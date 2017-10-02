@@ -60,6 +60,10 @@ body {
 
 }
 
+.RUsure {
+  margin: 10px;
+}
+
 /*FORMULAIRE DINSCRIPTION */
 .form_inscription > *{
   text-align: center;

@@ -17,7 +17,7 @@ isset($_POST["mdp2"]) AND $_POST["mdp"] === $_POST["mdp2"]
   include($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/model/signin/add_account.php');
 
   // recuperer la liste des mails existants
-  $mail_list = existing_mail();
+  $mail_list = existing_mail($mail);
   $existingmail = false;
 
   // faire une boucle pour voir si le mail renseigné est unique
@@ -36,7 +36,9 @@ isset($_POST["mdp2"]) AND $_POST["mdp"] === $_POST["mdp2"]
   }
 
 // si mail déjà existant, prevenir l'user sinon le renvoyer sur son espace d'administration en ouvrant une session
+
   if ($existingmail == true OR $tooshort == true) {
+
     if ($existingmail == true AND $tooshort == true) {
       header('Location: http://localhost/moreauandsons/controler/signin/signin.php?info=wrong&length=wrong');
     } elseif ($existingmail == true) {
@@ -46,6 +48,8 @@ isset($_POST["mdp2"]) AND $_POST["mdp"] === $_POST["mdp2"]
     }
   } else {
     add_account($mdp, $mail, $prenom, $nom);
+    $_SESSION['prenom'] = $prenom;
+    $_SESSION['admin'] = "on";
     header('Location: http://localhost/moreauandsons/controler/espace_admin/espace_admin.php');
   }
 }

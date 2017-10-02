@@ -1,5 +1,5 @@
 <?php session_start();
-$_SESSION['admin'] = "off";
+// $_SESSION['admin'] == "off";
 
 include_once('model/connexion_sql.php');
 
