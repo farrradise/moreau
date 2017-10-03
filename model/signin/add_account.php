@@ -45,6 +45,19 @@ function get_name($mail)
 }
 
 
+function get_id($mail)
+{
+  global $bdd;
+
+  $req = $bdd -> prepare('SELECT id FROM admins WHERE email =:email');
+  $req -> execute(array('email'=>$mail));
+  $admin_id = $req->fetchAll();
+
+  return $admin_id;
+}
+
+
+
 
 function check_mdp($mail)
 {

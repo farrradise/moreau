@@ -6,6 +6,7 @@ if (isset($_POST["deconnexion"])) {
     // destroy session et unset variable
     unset($_SESSION['prenom']);
     unset($_SESSION['admin']);
+    unset($_SESSION['id']);
     session_destroy();
     header('Location: http://localhost/moreauandsons/controler/homepage/index.php');
   } elseif ($_POST['deconnexion'] == 'non') {

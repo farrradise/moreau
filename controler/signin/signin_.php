@@ -48,9 +48,10 @@ isset($_POST["mdp2"]) AND $_POST["mdp"] === $_POST["mdp2"]
     }
   } else {
     add_account($mdp, $mail, $prenom, $nom);
-    $_SESSION['prenom'] = $prenom;
-    $_SESSION['admin'] = "on";
+    // $_SESSION['prenom'] = $prenom;
+    // $_SESSION['admin'] = "on";
     header('Location: http://localhost/moreauandsons/controler/espace_admin/espace_admin.php');
+    // redigirer vers accueil et mettre un message de validation 
   }
 }
 else {
