@@ -30,11 +30,6 @@ if (isset($_POST['name_project']) AND isset($_POST['date_real']) AND isset($_POS
   $admin_ID = $_SESSION['id'];
   // echo  'id : '. $_SESSION['id']. '<br>';
 
-
-  // etat archive par défaut 0 pour valeur boolean false
-  $etat_archive = 0;
-
-
   // nom du client
   $name_customer = htmlspecialchars($_POST['name_customer']);
   // limiter à 30 caracteres
@@ -56,7 +51,10 @@ if (isset($_POST['name_project']) AND isset($_POST['date_real']) AND isset($_POS
   }
 
 
-// ICI appeler la fonction du model pour inserer un nouveau projet 
+// ICI appeler la fonction du model pour inserer un nouveau projet
+include($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/model/espace_admin/add_project.php');
+add_project($name_project, $date_real, $name_customer, $montant_devis);
+echo 'OKKK';
 }
 
 
@@ -64,6 +62,9 @@ else
 {
   // redirection vers la page est prévenir que tous les champs n'ont pas été correctement renseignés
 }
+
+
+
 
 
 
