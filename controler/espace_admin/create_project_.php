@@ -3,7 +3,7 @@
 // Je verifie toutes les infos renseigné en premier lieu
 
 // Si tous les éléments obligatoires sont renseigné
-if (isset($_POST['name_project']) AND isset($_POST['date_real']) AND isset($_POST['montant_devis']) AND isset($_POST['name_customer'])) {
+if (isset($_POST['name_project']) AND isset($_POST['date_real']) AND isset($_POST['montant_devis']) AND isset($_POST['name_customer']) AND isset($_POST['categorie'])) {
 
   // ID généré automatiquement donc inutile de le verifier
 
@@ -51,10 +51,12 @@ if (isset($_POST['name_project']) AND isset($_POST['date_real']) AND isset($_POS
   }
 
 
+  $categorie = htmlspecialchars( $_POST['categorie']);
+
 // ICI appeler la fonction du model pour inserer un nouveau projet
-include($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/model/espace_admin/add_project.php');
-add_project($name_project, $date_real, $name_customer, $montant_devis);
-echo 'OKKK';
+include($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/model/espace_admin/espace_admin.php');
+add_project($name_project, $date_real, $name_customer, $montant_devis, $categorie);
+header('Location: http://localhost/moreauandsons/controler/espace_admin/espace_admin.php');
 }
 
 
@@ -63,41 +65,4 @@ else
   // redirection vers la page est prévenir que tous les champs n'ont pas été correctement renseignés
 }
 
-
-
-
-
-
-
-
-// POUR LES CATEGORIES
-// INSERER avec une fonction
-
-
-// exemple choppé sur internet à adapter pour last id
-
-// $sql = "INSERT INTO MyGuests (firstname, lastname, email)
-// VALUES ('John', 'Doe', 'john@example.com')";
-//
-// // pour les categories
-//
-// function get_id($mail)
-// {
-//   global $bdd;
-//
-//   $req = $bdd -> prepare('SELECT id FROM admins WHERE email =:email');
-//   $req -> execute(array('email'=>$mail));
-//   $admin_id = $req->fetchAll();
-//
-//   return $admin_id;
-// }
-//
-//
-// if ($conn->query($sql) === TRUE) {
-//     $last_id = $conn->insert_id;
-//     echo "New record created successfully. Last inserted ID is: " . $last_id;
-// } else {
-//     echo "Error: " . $sql . "<br>" . $conn->error;
-// }
-//
- // ?>
+?>
