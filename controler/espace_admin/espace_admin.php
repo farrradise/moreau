@@ -3,6 +3,20 @@
 // Si la session est ouverte je donne l'accès à la page
 if (isset($_SESSION['admin'])) {
   $_SESSION['admin'] = 'off';
+  //connecter bdd
+
+  //recuperer
+
+ //  $projets = [];
+ //
+ //  $etapes = [];
+ //
+ //  $missions = [ [], [], ... ];
+ //
+ //  var_dump($projets);
+ // var_dump();
+ //
+
   include($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/espace_admin/espace_admin.php');
   $_SESSION['admin']= 'on';
   // sinon je renvoie vers l'accueil

@@ -16,7 +16,11 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
 
   <!-- ICI presenter les projets en cours avec une boucle  + plus tard donner la possibilité de trier par catégorie-->
   <div id="encours" class="row">
-    blabla bla
+    <?php
+     ?>
+
+
+
   </div>
 
   <!-- ICI formulaire de création de projet  -->
@@ -24,7 +28,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
     <div class="col s12 m6 offset-m3">
 
       <h4 class="teal-text text-darken-1">Créer un projet </h4>
-      <form class="create_project" action="index.html" method="post">
+      <form class="create_project" action="http://localhost/moreauandsons/controler/espace_admin/create_project_.php" method="post">
         <label for="name_project">Intitulé du projet :
           <input type="text" name="name_project" value="">
         </label>

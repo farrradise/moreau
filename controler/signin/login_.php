@@ -40,7 +40,7 @@ if (isset($_POST["email"]) AND isset($_POST["mdp"])) {
   // REQUETE QUI DEMANDE DE RECUPERER L ID DE LEMAIL CORRESPONDANT
   $admin_id = get_id($mail);
   foreach ($admin_id as $key => $value) {
-    $admin_id = $admin[$key]['id'];
+    $admin_id = $admin_id[$key]['id'];
     break;
   }
 
