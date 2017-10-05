@@ -20,11 +20,6 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
     foreach($projets as $projet)
     {
     ?>
-            <?php //echo $projet['nom_projet']; ?>
-            <!-- <em>le <?php //echo $billet['date_creation_fr']; ?></em> -->
-        <?php //echo $billet['contenu']; ?>
-        <!-- <em><a href="commentaires.php?billet=<?php //echo $billet['id']; ?>">Commentaires</a></em> -->
-
 
         <div class="projet card sticky-action col s12 m6 l3" style="">
           <div class="card-image waves-effect waves-block waves-light">
@@ -63,24 +58,47 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
             else
             {
             ?>
-              <img class="activator" src='' alt="rien">
+              <img class="activator" src='' alt="pas d'illu BUG">
             <?php  }  ?>
           </div>
           <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4"><?php echo $projet['nom_projet'];?><i class="fa fa-plus-circle right" aria-hidden="true"></i></span>
+            <span class="card-title activator teal-text text-darken-1"><?php echo $projet['nom_projet'];?><i class="fa fa-plus-circle teal-text fa-2x text-darken-1" aria-hidden="true"></i></span>
             <p>Démarrage : <?php echo $projet['date_creation']?> </p>
             <p>Remise des clés : <?php echo $projet['delai']?></p>
             <p>Client : <?php echo $projet['nom_client']?> </p>
+            <p>Ville : <?php echo $projet['ville']?> </p>
             <p>Budget : <?php echo $projet['budget']?>€ </p>
           </div>
           <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-            <p>Here is some more information about this product that is only revealed once clicked on.</p>
+            <span class="card-title teal-text text-darken-1">Liste étapes<i class="material-icons right">close</i></span>
+            <p>Cliquez pour un descriptif.</p>
+            <table class="highlight row">
+              <thead class="white-text teal darken-1">
+                <tr>
+                    <th>Intitulé</th>
+                    <th>Délai</th>
+                    <th>Etat</th>
+                </tr>
+              </thead>
+
+              <tbody class="">
+                <tr>
+                  <td><a href="#">Nom de l'étape</a></td>
+                  <td>DD/MM/YY</td>
+                  <td class="state_step red"></td>
+                </tr>
+                <tr>
+                  <td><a href="#">Nom de l'étape</a></td>
+                  <td>DD/MM/YY</td>
+                  <td class="state_step red"></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
           <div class="card-action row">
-            <a title="supprimer le projet, attention action irréversible" class="col s1" href="#"> <i class="fa fa-trash" aria-hidden="true"></i></a>
-            <a title="archiver le projet, utile lorsqu'il est terminé" class="col s1" href="#"><i class="fa fa-folder-open" aria-hidden="true"></i></a>
-            <a class="" href="#">ajout étape</a>
+            <a title="supprimer le projet, attention action irréversible" class="col s1" href="#"> <i class="fa fa-trash teal-text" aria-hidden="true"></i></a>
+            <a title="archiver le projet, utile lorsqu'il est terminé" class="col s1" href="#"><i class="fa fa-folder-open teal-text" aria-hidden="true"></i></a>
+            <a class="teal-text" href="#">ajout étape</a>
           </div>
         </div>
     <?php
@@ -111,6 +129,9 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
         </label>
         <label for="name_customer">Nom du client :
           <input type="text" name="name_customer" value="">
+        </label>
+        <label for="city">Ville :
+          <input maxlength="50" type="text" name="city" value="">
         </label>
         <label>Catégories : </label> <br>
         <input type="radio" name="categorie" value="extension" id="extension" />

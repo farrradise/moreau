@@ -50,12 +50,17 @@ if (isset($_POST['name_project']) AND isset($_POST['date_real']) AND isset($_POS
     // break le code
   }
 
+  // nom du projet
+  $city = htmlspecialchars($_POST['city']);
+  if (strlen($city)> 50) {
+    //renvoyer vers page creation car ville trop longue
+  }
 
   $categorie = htmlspecialchars( $_POST['categorie']);
 
 // ICI appeler la fonction du model pour inserer un nouveau projet
 include($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/model/espace_admin/espace_admin.php');
-add_project($name_project, $date_real, $name_customer, $montant_devis, $categorie);
+add_project($name_project, $date_real, $name_customer, $montant_devis, $categorie, $city);
 header('Location: http://localhost/moreauandsons/controler/espace_admin/espace_admin.php');
 }
 
