@@ -2,7 +2,7 @@
 
 include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/model/connexion_sql.php');
 
-function add_project($nom_projet, $delai, $nom_client, $budget, $categorie)
+function add_project($nom_projet, $delai, $nom_client, $budget, $categorie, $city)
 {
     global $bdd;
     $req = $bdd->prepare('INSERT INTO projets (nom_projet, delai, date_creation, admin_ID, etat_archive, nom_client, budget, categorie, ville)
@@ -31,4 +31,18 @@ function get_projects($id)
 
 
     return $projets;
+}
+
+
+function get_details_project($id_project) {
+
+  global $bdd;
+
+  $req = $bdd->prepare('SELECT ID, nom_projet, DATE_FORMAT(delai, \'%d/%m/%Y\') AS delai, DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS date_creation, nom_client, budget, categorie, ville FROM projets WHERE ID = :ID');
+  $req -> execute(array('ID'=>$id_project));
+  $ONEproject = $req->fetch();
+
+
+  return $ONEproject;
+
 }

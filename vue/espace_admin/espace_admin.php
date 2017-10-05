@@ -5,8 +5,8 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
    <div class="nav-content">
      <ul class="tabs tabs-transparent">
        <li class="tab"><a class="active" href="#encours">Projets en cours</a></li>
-       <li class="tab"><a href="#creation">Créer un projet</a></li>
-       <li class="tab"><a href="#archives">Les archives</a></li>
+       <li class="tab" style="position : relative; left : 1%;"><a href="#creation">Créer un projet</a></li>
+       <li class="tab" style="position : relative; left : 3%;"><a href="#archives">Les archives</a></li>
     </ul>
   </div>
 </nav>
@@ -83,7 +83,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
 
               <tbody class="">
                 <tr>
-                  <td><a href="#">Nom de l'étape</a></td>
+                  <td><a href="http://localhost/moreauandsons/controler/espace_admin/details.php">Nom de l'étape</a></td>
                   <td>DD/MM/YY</td>
                   <td class="state_step red"></td>
                 </tr>
@@ -98,7 +98,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
           <div class="card-action row">
             <a title="supprimer le projet, attention action irréversible" class="col s1" href="#"> <i class="fa fa-trash teal-text" aria-hidden="true"></i></a>
             <a title="archiver le projet, utile lorsqu'il est terminé" class="col s1" href="#"><i class="fa fa-folder-open teal-text" aria-hidden="true"></i></a>
-            <a class="teal-text" href="#">ajout étape</a>
+            <a class="teal-text" href="http://localhost/moreauandsons/controler/espace_admin/details.php?id_projet=<?php echo $projet['ID'];?>">ajout étape</a>
           </div>
         </div>
     <?php
