@@ -130,6 +130,15 @@ img.activator {
   text-align: right;
 }
 
+/*DISPLAY DETAILS MAIN*/
+/*#details {
+  width : 90%;
+  padding-top : 10px;
+  /*padding : 10px auto auto 10px;*/
+  /*border: 1px solid red!important;*/
+  /*background-color: black!important;*/
+/*}*/
+
 /*FOOTER */
 footer {
   margin-top: auto;
