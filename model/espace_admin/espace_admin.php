@@ -34,6 +34,9 @@ function get_projects($id)
 }
 
 
+
+
+
 function get_details_project($id_project) {
 
   global $bdd;
@@ -45,4 +48,40 @@ function get_details_project($id_project) {
 
   return $ONEproject;
 
+}
+
+
+
+
+
+function add_step($ID_projets, $intitule_etape, $date_expiration)
+{
+    global $bdd;
+    $req = $bdd->prepare('INSERT INTO etapes (ID_projets, intitule_etape, etat, date_expiration)
+    VALUES(:ID_projets, :intitule_etape, 0, :date_expiration)');
+    $req->execute(array(
+      'ID_projets' => $ID_projets,
+      'intitule_etape' => $intitule_etape,
+      'date_expiration' => $date_expiration
+    	));
+
+}
+
+
+
+function get_all_steps($id_project)
+{
+    global $bdd;
+
+    $req = $bdd->prepare('SELECT ID, ID_projets, intitule_etape, etat, DATE_FORMAT(date_expiration, \'%d/%m/%Y\') AS date_expiration
+    FROM etapes
+    WHERE ID_projets = :ID_projet
+    ORDER BY date_expiration DESC');
+    $req -> execute(array(
+      'ID_projet'=> $id_project,
+    ));
+    $all_steps = $req->fetchAll();
+
+
+    return $all_steps;
 }

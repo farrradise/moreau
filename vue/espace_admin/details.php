@@ -63,45 +63,45 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
 
     <!-- partie collapsible  -->
     <ul class="collapsible col s12 m6 l8 offset-l1" style="border: 0px;" data-collapsible="accordion">
+
+      <!-- 1 tab by step  -->
+      <?php
+      foreach($get_all_steps as $step)
+      {
+      ?>
+
+
       <li>
-        <div style="display: flexbox; flex-flow : row wrap; justify-content : space-around;" class="collapsible-header">
-          <span>Titre etape</span>
-          <span>DD/MM/YYYY</span>
-          <span style="background-color: red; width : 25px;"></span>
+        <div style="display: flexbox; flex-flow : row wrap; justify-content : space-around;" class="row collapsible-header">
+          <span class="col s8"><?php echo$step['intitule_etape']; ?></span>
+          <span class="col s3">Délai : <?php echo$step['date_expiration']; ?></span>
+          <span class="col S1" style="background-color: red; width : 25px;"></span>
         </div>
         <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
       </li>
-      <li>
-        <div style="display: flexbox; flex-flow : row wrap; justify-content : space-around;" class="collapsible-header">
-          <span>Titre etape</span>
-          <span>DD/MM/YYYY</span>
-          <span style="background-color: red; width : 25px;"></span>
-        </div>
-        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-      </li>
-      <li>
-        <div style="display: flexbox; flex-flow : row wrap; justify-content : space-around;" class="collapsible-header">
-          <span>Titre etape</span>
-          <span>DD/MM/YYYY</span>
-          <span style="background-color: red; width : 25px;"></span>
-        </div>
-        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-      </li>
+
+    <?php  } // end of loop
+     ?>
+
+      <!-- form to create a new step -->
       <li>
         <div style="display: flexbox; flex-flow : row wrap; justify-content : space-around;">
-          <form class="" action="index.html" method="post">
+          <form class="" action="http://localhost/moreauandsons/controler/espace_admin/details_.php" method="post">
+            <p class="center teal-text text-darken-1">Pour ajouter une étape : </p>
             <div class="input-field col s6">
-              <input id="name_step" type="text" class="validate" required>
+              <input id="name_step" name="name_step" type="text" class="validate" required>
               <label for="name_step">Intitulé de l'étape</label>
             </div>
             <div class="input-field col s6">
-              <input id="date_step" type="text" class="validate" required>
+              <input id="date_step" name="date_step" type="text" class="validate" required>
               <label for="date_step">Délai prévu <em>(format DD/MM/YYYY)</em></label>
             </div>
             <input class="btn teal darken-1 right" style="margin : 10px;" type="submit" name="" value="Ajouter étape">
           </form>
         </div>
       </li>
+      <!-- END form to create a new step -->
+
     </ul>
 
   </div>
@@ -111,8 +111,5 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
 
 </main>
 
-
-
-<!-- ICI je vais devoir mettre un modal selon la situation (dans le controler donc) -->
 <?php include($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/modal_logout.php')?>
 <?php include($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/footer.php') ?>
