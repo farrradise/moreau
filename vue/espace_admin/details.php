@@ -81,13 +81,36 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
 
 
       <li>
+        <!-- descriptif d'une étape -->
         <div class="row collapsible-header">
           <span><a class="trash" href="index.html"><i class="fa fa-trash teal-text" aria-hidden="true"></i></a></span>
           <span class="col s8"><?php echo$step['intitule_etape']; ?></span>
           <span class="col s3"><?php echo$step['date_expiration']; ?></span>
           <span <?php if ($step['etat'] == 0) { echo 'class="col s1 center"> <i class="fa fa-circle fa-2x red-text" aria-hidden="true"></i>';} else { echo '"col S1 center"> <i class="green-text fa fa-circle fa-2x" aria-hidden="true"></i>';}?></span>
         </div>
-        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+
+
+        <!-- descriptif des missions de l'étape -->
+        <div class="collapsible-body">
+          <div>mettre listing des missions.</div>
+
+
+
+          <!-- form to add a mission -->
+          <div class="row">
+            <form class="" action="http://localhost/moreauandsons/controler/espace_admin/missions_.php?id_step=<?php echo$step['ID'];?>" method="post">
+              <div class="input-field col s9">
+                <input id="mission_name" name="mission_name" type="text" class="validate" required>
+                <label for="mission_name">Nouvelle mission</label>
+              </div>
+              <input class="input-field col s3 btn white teal-text text-darken-1" type="submit" name="" value="ajouter">
+            </form>
+
+          </div>
+
+        </div>
+
+
       </li>
 
     <?php  } // end of loop
@@ -95,9 +118,9 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
 
       <!-- form to create a new step -->
       <li class="new-step">
-        <div>
+        <div class="">
           <form class="" action="http://localhost/moreauandsons/controler/espace_admin/details_.php" method="post">
-            <p class="center teal-text text-darken-1">Pour ajouter une étape : </p>
+            <p class="col s12 btn center teal darken-1">Pour ajouter une étape : </p>
             <div class="input-field col s6">
               <input id="name_step" name="name_step" type="text" class="validate" required>
               <label for="name_step">Intitulé de l'étape</label>
@@ -118,6 +141,38 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
 
 
 
+
+  <!-- ICI message d'erreur si mauvais renseignements lors de l'envoie du formulaire de création de nouvelle étape -->
+  <?php
+
+  if (isset($_GET['result']) AND $_GET['result'] == 'wrong') {
+  ?>
+
+    <div class="red white-text wrong">
+      Une erreur est survenue lors de l'enregistrement d'une nouvelle étape ou mission.
+      <br><?php echo $_SESSION['prenom'] ?>, merci de recommencer.
+    </div>
+
+  <?php
+  }
+  ?>
+
+
+
+  <!-- ICI message de validation lors de création de nouvelle mission -->
+  <?php
+
+  if (isset($_GET['result']) AND $_GET['result'] == 'success') {
+  ?>
+
+    <div class="green white-text wrong">
+      Bravo <?php echo $_SESSION['prenom'] ?>, vous venez d'ajouter une mission.
+      <br>Et maintenant, au boulot !
+    </div>
+
+  <?php
+  }
+  ?>
 
 </main>
 

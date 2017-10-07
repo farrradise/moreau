@@ -130,3 +130,19 @@ function get_all_steps_by_project()
 
     return $all_steps_by_project;
 }
+
+
+
+
+
+function add_mission($etape_ID, $intitule_mission)
+{
+    global $bdd;
+    $req = $bdd->prepare('INSERT INTO missions (etape_ID, intitule_mission, etat)
+    VALUES(:etape_ID, :intitule_mission, 0)');
+    $req->execute(array(
+      'etape_ID' => $etape_ID,
+      'intitule_mission' => $intitule_mission
+    	));
+
+}

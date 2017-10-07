@@ -15,7 +15,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
 <main>
 
   <!-- ICI presenter les projets en cours avec une boucle  + plus tard donner la possibilité de trier par catégorie-->
-  <div id="encours" class="row" style="width : 90%; padding-top : 10px;">
+  <div id="encours" class="row">
     <?php
     foreach($projets as $projet)
     {
@@ -90,7 +90,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
                   if ($step['ID_projets'] == $projet['ID']) {
                 ?>
                 <tr>
-                    <td><a class="black-text" href="http://localhost/moreauandsons/controler/espace_admin/details.php"><?php echo $step['intitule_etape'] ?></a></td>
+                    <td><a class="black-text" href="http://localhost/moreauandsons/controler/espace_admin/details.php?id_projet=<?php echo $projet['ID'];?>"><?php echo $step['intitule_etape'] ?></a></td>
                     <td><?php echo $step['date_expiration'] ?></td>
                     <td class=<?php if ($step['etat'] == 0) { echo '"red-text center"> <i class="fa fa-circle fa-2x" aria-hidden="true"></i>';} else { echo '"green-text center"> <i class="fa fa-circle fa-2x" aria-hidden="true"></i>">ok';}?></td>
                 </tr>
