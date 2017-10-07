@@ -61,9 +61,38 @@
               <p>Budget : <?php echo $projet['budget']?>€ </p>
             </div>
             <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Liste étapes<i class="material-icons right">close</i></span>
-              <table>
-                <td>salut</td>
+              <span class="card-title grey-text text-darken-4">Liste des tâches<i class="material-icons right">close</i></span>
+
+              <!-- STEPS LIST -->
+              <table class="highlight row">
+                <thead class="teal-text text-darken-1">
+                  <tr>
+                      <th>Intitulé</th>
+                      <th>Délai</th>
+                      <th>Etat</th>
+                  </tr>
+                </thead>
+
+
+                <tbody class="row">
+                  <?php
+                  foreach ($steps as $step) {
+                    if ($step['ID_projets'] == $projet['ID']) {
+                  ?>
+                  <tr>
+                      <td><?php echo $step['intitule_etape'] ?></td>
+                      <td><?php echo $step['date_expiration'] ?></td>
+                      <td class=<?php if ($step['etat'] == 0) { echo '"red-text center"> <i class="fa fa-circle fa-2x" aria-hidden="true"></i>';} else { echo '"green-text center"> <i class="fa fa-circle fa-2x" aria-hidden="true"></i>">ok';}?></td>
+                  </tr>
+
+                  <?php
+                    }
+                  } ?>
+
+                </tbody>
+                <!-- END OF STEPS LIST -->
+
+
               </table>
             </div>
             <div class="card-action chef-chantier">

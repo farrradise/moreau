@@ -22,6 +22,7 @@ if (isset($_SESSION['admin'])) {
  include($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/model/espace_admin/espace_admin.php');
  $projets = get_projects($_SESSION['id']);
 
+ $steps = get_all_steps_by_project();
 
   include($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/espace_admin/espace_admin.php');
   $_SESSION['admin']= 'on';

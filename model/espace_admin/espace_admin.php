@@ -25,7 +25,17 @@ function get_projects($id)
 {
     global $bdd;
 
-    $req = $bdd->prepare('SELECT ID, nom_projet, DATE_FORMAT(delai, \'%d/%m/%Y\') AS delai, DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS date_creation, nom_client, budget, categorie, ville FROM projets WHERE admin_ID = :admin_ID ORDER BY date_creation DESC');
+    $req = $bdd->prepare('SELECT ID,
+    nom_projet,
+    DATE_FORMAT(delai, \'%d/%m/%Y\') AS delai,
+    DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS date_creation,
+    nom_client,
+    budget,
+    categorie,
+    ville
+    FROM projets
+    WHERE admin_ID = :admin_ID
+    ORDER BY date_creation DESC');
     $req -> execute(array('admin_ID'=>$id));
     $projets = $req->fetchAll();
 
@@ -37,11 +47,20 @@ function get_projects($id)
 
 
 
+
 function get_details_project($id_project) {
 
   global $bdd;
 
-  $req = $bdd->prepare('SELECT ID, nom_projet, DATE_FORMAT(delai, \'%d/%m/%Y\') AS delai, DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS date_creation, nom_client, budget, categorie, ville FROM projets WHERE ID = :ID');
+  $req = $bdd->prepare('SELECT ID,
+    nom_projet,
+    DATE_FORMAT(delai, \'%d/%m/%Y\') AS delai,
+    DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS date_creation,
+    nom_client, budget,
+    categorie,
+    ville
+    FROM projets
+    WHERE ID = :ID');
   $req -> execute(array('ID'=>$id_project));
   $ONEproject = $req->fetch();
 
@@ -73,7 +92,11 @@ function get_all_steps($id_project)
 {
     global $bdd;
 
-    $req = $bdd->prepare('SELECT ID, ID_projets, intitule_etape, etat, DATE_FORMAT(date_expiration, \'%d/%m/%Y\') AS date_expiration
+    $req = $bdd->prepare('SELECT ID,
+      ID_projets,
+      intitule_etape,
+      etat,
+      DATE_FORMAT(date_expiration, \'%d/%m/%Y\') AS date_expiration
     FROM etapes
     WHERE ID_projets = :ID_projet
     ORDER BY date_expiration DESC');
@@ -84,4 +107,26 @@ function get_all_steps($id_project)
 
 
     return $all_steps;
+}
+
+
+function get_all_steps_by_project()
+{
+    global $bdd;
+
+    $req = $bdd->prepare('SELECT ID,
+      ID_projets,
+      intitule_etape,
+      etat,
+      DATE_FORMAT(date_expiration, \'%d/%m\') AS date_expiration
+    FROM etapes
+    -- WHERE ID_projets = :ID_projet
+    ORDER BY date_expiration');
+    $req -> execute(array(
+      // 'ID_projet'=> $id_project,
+    ));
+    $all_steps_by_project = $req->fetchAll();
+
+
+    return $all_steps_by_project;
 }

@@ -6,7 +6,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
 
 <main class="details_main">
   <!-- ICI mettre le details d'un etape et la possibilité de modifier/ajouter/supprimer/valider -->
-  <div id="details" class="row" style="width : 90%; padding-top : 10px;">
+  <div id="details" class="row">
     <div class="projet card sticky-action col s12 m6 l3">
       <div class="card-image waves-effect waves-block waves-light">
         <?php
@@ -56,13 +56,22 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
         <p>Budget : <?php echo $ONEproject['budget']?>€ </p>
       </div>
       <div class="card-action row">
-          <a class="col s12 btn teal darken-1" style="position : relative; bottom : 10px;" href="http://localhost/moreauandsons/controler/espace_admin/espace_admin.php">Retour</a>
+          <a class="col s12 btn teal darken-1" href="http://localhost/moreauandsons/controler/espace_admin/espace_admin.php">Retour</a>
       </div>
     </div>
 
 
     <!-- partie collapsible  -->
-    <ul class="collapsible col s12 m6 l8 offset-l1" style="border: 0px;" data-collapsible="accordion">
+    <ul class="collapsible col s12 m6 l8 offset-l1" data-collapsible="accordion">
+
+      <li class="teal-text text-darken-1">
+        <div class="row collapsible-header">
+          <span class="col s8">Intitulé</span>
+          <span class="col s3">Délai</span>
+          <span class="col S1" ></span>
+        </div>
+      </li>
+
 
       <!-- 1 tab by step  -->
       <?php
@@ -72,10 +81,11 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
 
 
       <li>
-        <div style="display: flexbox; flex-flow : row wrap; justify-content : space-around;" class="row collapsible-header">
+        <div class="row collapsible-header">
+          <span><a class="trash" href="index.html"><i class="fa fa-trash teal-text" aria-hidden="true"></i></a></span>
           <span class="col s8"><?php echo$step['intitule_etape']; ?></span>
-          <span class="col s3">Délai : <?php echo$step['date_expiration']; ?></span>
-          <span class="col S1" style="background-color: red; width : 25px;"></span>
+          <span class="col s3"><?php echo$step['date_expiration']; ?></span>
+          <span <?php if ($step['etat'] == 0) { echo 'class="col s1 center"> <i class="fa fa-circle fa-2x red-text" aria-hidden="true"></i>';} else { echo '"col S1 center"> <i class="green-text fa fa-circle fa-2x" aria-hidden="true"></i>';}?></span>
         </div>
         <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
       </li>
@@ -84,8 +94,8 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
      ?>
 
       <!-- form to create a new step -->
-      <li>
-        <div style="display: flexbox; flex-flow : row wrap; justify-content : space-around;">
+      <li class="new-step">
+        <div>
           <form class="" action="http://localhost/moreauandsons/controler/espace_admin/details_.php" method="post">
             <p class="center teal-text text-darken-1">Pour ajouter une étape : </p>
             <div class="input-field col s6">
@@ -96,7 +106,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
               <input id="date_step" name="date_step" type="text" class="validate" required>
               <label for="date_step">Délai prévu <em>(format DD/MM/YYYY)</em></label>
             </div>
-            <input class="btn teal darken-1 right" style="margin : 10px;" type="submit" name="" value="Ajouter étape">
+            <input class="btn teal darken-1 right" type="submit" name="" value="Ajouter étape">
           </form>
         </div>
       </li>

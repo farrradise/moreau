@@ -19,8 +19,7 @@ if (isset($_POST['name_project']) AND isset($_POST['date_real']) AND isset($_POS
       $date_real = date('Y-m-d', strtotime($date_real));
     }
     else {
-      echo "ça marche pas";
-      // faire break pour renvoyer message derreur apres redirection
+      header('Location: http://localhost/moreauandsons/controler/espace_admin/espace_admin.php?result=wrong');
     }
 
 
@@ -37,23 +36,20 @@ if (isset($_POST['name_project']) AND isset($_POST['date_real']) AND isset($_POS
       $name_customer = strtoupper($name_customer);
   }
   else {
-    // renvoyer vers page creation avec message derreur
-    // break le code
+    header('Location: http://localhost/moreauandsons/controler/espace_admin/espace_admin.php?result=wrong');
   }
 
 
   // vérifier qu'il s'agit d'un nbr
   $montant_devis = (int) htmlspecialchars( $_POST['montant_devis']);
   if (!is_int($montant_devis) OR $montant_devis == 0) {
-    // ce n'est PAS un entier !!';
-    // renvoyer vers page creation avec message derreur
-    // break le code
+    header('Location: http://localhost/moreauandsons/controler/espace_admin/espace_admin.php?result=wrong');
   }
 
   // nom du projet
   $city = htmlspecialchars($_POST['city']);
   if (strlen($city)> 50) {
-    //renvoyer vers page creation car ville trop longue
+    header('Location: http://localhost/moreauandsons/controler/espace_admin/espace_admin.php?result=wrong');
   }
 
   $categorie = htmlspecialchars( $_POST['categorie']);
@@ -67,7 +63,7 @@ header('Location: http://localhost/moreauandsons/controler/espace_admin/espace_a
 
 else
 {
-  // redirection vers la page est prévenir que tous les champs n'ont pas été correctement renseignés
+  header('Location: http://localhost/moreauandsons/controler/espace_admin/espace_admin.php?result=wrong');
 }
 
 ?>

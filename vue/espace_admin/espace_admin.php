@@ -61,14 +61,16 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
               <img class="activator" src='' alt="pas d'illu BUG">
             <?php  }  ?>
           </div>
+
           <div class="card-content">
             <span class="card-title activator teal-text text-darken-1"><?php echo $projet['nom_projet'];?><i class="fa fa-plus-circle teal-text fa-2x text-darken-1" aria-hidden="true"></i></span>
             <p>Démarrage : <?php echo $projet['date_creation']?> </p>
             <p>Remise des clés : <?php echo $projet['delai']?></p>
             <p>Client : <?php echo $projet['nom_client']?> </p>
             <p>Ville : <?php echo $projet['ville']?> </p>
-            <p>Budget : <?php echo $projet['budget']?>€ </p>
+            <p>Budget : <?php echo $projet['budget']?>€ <?php echo $projet['ID']?></p>
           </div>
+
           <div class="card-reveal">
             <span class="card-title teal-text text-darken-1">Liste étapes<i class="material-icons right">close</i></span>
             <p>Cliquez pour un descriptif.</p>
@@ -81,17 +83,22 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
                 </tr>
               </thead>
 
-              <tbody class="">
+
+              <tbody class="row">
+                <?php
+                foreach ($steps as $step) {
+                  if ($step['ID_projets'] == $projet['ID']) {
+                ?>
                 <tr>
-                  <td><a href="http://localhost/moreauandsons/controler/espace_admin/details.php">Nom de l'étape</a></td>
-                  <td>DD/MM/YY</td>
-                  <td class="state_step red"></td>
+                    <td><a class="black-text" href="http://localhost/moreauandsons/controler/espace_admin/details.php"><?php echo $step['intitule_etape'] ?></a></td>
+                    <td><?php echo $step['date_expiration'] ?></td>
+                    <td class=<?php if ($step['etat'] == 0) { echo '"red-text center"> <i class="fa fa-circle fa-2x" aria-hidden="true"></i>';} else { echo '"green-text center"> <i class="fa fa-circle fa-2x" aria-hidden="true"></i>">ok';}?></td>
                 </tr>
-                <tr>
-                  <td><a href="#">Nom de l'étape</a></td>
-                  <td>DD/MM/YY</td>
-                  <td class="state_step red"></td>
-                </tr>
+
+                <?php
+                  }
+                } ?>
+
               </tbody>
             </table>
           </div>
@@ -155,6 +162,22 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
   <!-- ICI stocker tous les projets typé archivé  + plus tard donne possibilité de trier par categorie-->
   <div id="archives" class="col s12">Test 4</div>
 
+
+
+  <!-- ICI message d'erreur si mauvais renseignements lors de l'envoie du formulaire de création de novueau projet -->
+  <?php
+
+  if (isset($_GET['result']) AND $_GET['result'] == 'wrong') {
+  ?>
+
+    <div class="red white-text wrong">
+      Une erreur est survenue lors de l'enregistrement du nouveau projet.
+      <br> Veuillez recommencer.
+    </div>
+
+  <?php
+  }
+  ?>
 </main>
 
 
