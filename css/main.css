@@ -161,17 +161,14 @@ img.activator {
 
 }
 
+
 .new-step .btn {
   margin : 10px;
 }
 
-/*#details {
-  width : 90%;
-  padding-top : 10px;
-  /*padding : 10px auto auto 10px;*/
-  /*border: 1px solid red!important;*/
-  /*background-color: black!important;*/
-/*}*/
+.collapsible-body .tableau {
+  margin-top: -40px!important;
+}
 
 /*FOOTER */
 footer {

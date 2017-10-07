@@ -146,3 +146,19 @@ function add_mission($etape_ID, $intitule_mission)
     	));
 
 }
+
+
+
+
+function get_all_missions()
+{
+    global $bdd;
+
+    $req = $bdd->prepare('SELECT *
+    FROM missions');
+    $req -> execute(array());
+    $get_all_missions = $req->fetchAll();
+
+
+    return $get_all_missions;
+}

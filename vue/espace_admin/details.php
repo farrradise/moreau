@@ -92,7 +92,43 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
 
         <!-- descriptif des missions de l'étape -->
         <div class="collapsible-body">
-          <div>mettre listing des missions.</div>
+
+          <div class="tableau">
+            <form class="" action="index.html" method="post">
+              <table class="teal striped row">
+                <thead class="white-text row">
+                  <tr class="">
+                    <th class=" col s11" >Mission</th>
+                    <th class=" col s1">Etat</th>
+                  </tr>
+                </thead>
+
+                <!-- mettre la boucle ici -->
+                <tbody class="row white">
+                  <!-- 1 tab by step  -->
+                  <?php
+                  foreach($get_all_missions as $mission)
+                  {
+                    if ($mission['etape_ID'] == $step['ID']) {
+                  ?>
+                  <tr class="">
+                    <td class="col s11">
+                      <input type="checkbox" name="<?php echo $mission['ID'];?>" id="<?php echo $mission['ID'];?>" value="<?php echo $mission['ID'];?>">
+                      <label for="<?php echo $mission['ID'];?>">
+                        <?php echo $mission['intitule_mission']; ?>
+                      </label>
+                    </td>
+                    <td <?php if ($step['etat'] == 0) { echo 'class="center col s1"> <i class="fa fa-circle red-text" aria-hidden="true"></i>';} else { echo '"center col S1"> <i class="green-text fa fa-circle" aria-hidden="true"></i>';}?></td>
+                  </tr>
+                  <?php
+                    }  // end of condition
+                  } // end loop for missions
+
+                   ?>
+                </tbody>
+              </table>
+            </form>
+          </div>
 
 
 
@@ -113,7 +149,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
 
       </li>
 
-    <?php  } // end of loop
+    <?php  } // end of loop step
      ?>
 
       <!-- form to create a new step -->

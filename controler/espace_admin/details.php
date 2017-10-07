@@ -10,6 +10,7 @@ if (isset($_SESSION['admin']) AND isset($_GET['id_projet'])) {
  $id_projet = htmlspecialchars($_GET['id_projet']);
  $ONEproject = get_details_project($id_projet);
  $get_all_steps = get_all_steps($id_projet);
+ $get_all_missions = get_all_missions();
 
 
   include($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/espace_admin/details.php');
