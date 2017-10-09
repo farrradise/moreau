@@ -29,5 +29,5 @@ if (isset($_SESSION['admin'])) {
   // sinon je renvoie vers l'accueil
 } else {
 
-  header('Location: http://localhost/moreauandsons/vue/homepage/index.php');
+  header('Location: http://localhost/moreauandsons/controler/homepage/index.php');
 }

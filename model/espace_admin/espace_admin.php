@@ -35,7 +35,7 @@ function get_projects($id)
     ville
     FROM projets
     WHERE admin_ID = :admin_ID
-    ORDER BY date_creation DESC');
+    ORDER BY delai DESC');
     $req -> execute(array('admin_ID'=>$id));
     $projets = $req->fetchAll();
 

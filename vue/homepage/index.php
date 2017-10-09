@@ -8,11 +8,12 @@
         <div class="row" style="width : 90%; padding-top : 10px;">
 
         <?php
+
         foreach($get_20_projects as $projet)
         {
         ?>
 
-          <div class="projet card col s12 m6 l3" style="">
+          <div class="projet card col s12 m6 l3">
             <div class="card-image waves-effect waves-block waves-light">
               <?php
               if ($projet['categorie'] == 'surelevation')

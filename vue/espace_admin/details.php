@@ -60,154 +60,156 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
       </div>
     </div>
 
+    <div class="col s12 m6 l8 offset-l1">
 
-    <!-- partie collapsible  -->
-    <ul class="collapsible col s12 m6 l8 offset-l1" data-collapsible="accordion">
-      <H5 class="col s12 center teal-text text-darken-1">Détails des étapes </h5>
+      <!-- partie collapsible  -->
+      <ul class="collapsible col s12" data-collapsible="accordion" style="padding: 0;">
+        <H5 class="center white-text grey" style="text-shadow : 0 1px 1px grey; margin :0; padding: 10px 10px 20px 10px; border-bottom : 3px solid teal ">Détails des étapes </h5>
 
-      <li class="teal-text text-darken-1">
-        <div class="row collapsible-header">
-          <span class="col s8">Intitulé</span>
-          <span class="col s3">Délai</span>
-          <span class="col S1" ></span>
-        </div>
-      </li>
-
-
-      <!-- 1 tab by step  -->
-      <?php
-      foreach($get_all_steps as $step)
-      {
-      ?>
+        <li class="teal-text text-darken-1">
+          <div class="row collapsible-header">
+            <span class="col s8">Intitulé de l'étape</span>
+            <span class="col s3">Délai</span>
+            <span class="col S1" ></span>
+          </div>
+        </li>
 
 
-      <li>
-        <!-- descriptif d'une étape -->
-        <div class="row collapsible-header">
-          <span><a class="trash" href="index.html"><i class="fa fa-trash teal-text" aria-hidden="true"></i></a></span>
-          <span class="col s8"><?php echo$step['intitule_etape']; ?></span>
-          <span class="col s3"><?php echo$step['date_expiration']; ?></span>
-          <span <?php if ($step['etat'] == 0) { echo 'class="col s1 center"> <i class="fa fa-circle fa-2x red-text" aria-hidden="true"></i>';} else { echo '"col S1 center"> <i class="green-text fa fa-circle fa-2x" aria-hidden="true"></i>';}?></span>
-        </div>
+        <!-- 1 tab by step  -->
+        <?php
+        foreach($get_all_steps as $step)
+        {
+        ?>
 
 
-        <!-- descriptif des missions de l'étape -->
-        <div class="collapsible-body">
+        <li>
+          <!-- descriptif d'une étape -->
+          <div class="row collapsible-header">
+            <span><a class="trash" href="index.html"><i class="fa fa-trash teal-text" aria-hidden="true"></i></a></span>
+            <span class="col s7 offset-1"><?php echo$step['intitule_etape']; ?></span>
+            <span class="col s2"><?php echo$step['date_expiration']; ?></span>
+            <span <?php if ($step['etat'] == 0) { echo 'class="col s1 center"> <i class="fa fa-circle fa-2x red-text" aria-hidden="true"></i>';} else { echo '"col S1 center"> <i class="green-text fa fa-circle fa-2x" aria-hidden="true"></i>';}?></span>
+          </div>
 
-          <div class="tableau">
-            <form class="" action="index.html" method="post">
-              <table class="striped row">
-                <thead class="teal-text row">
-                  <tr class="">
-                    <th class=" col s11" >Missions</th>
-                    <th class=" col s1">Etat</th>
-                  </tr>
-                </thead>
 
-                <!-- mettre la boucle ici -->
-                <tbody class="row white">
-                  <!-- 1 tab by step  -->
+          <!-- descriptif des missions de l'étape -->
+          <div class="collapsible-body">
+
+            <div class="tableau">
+              <form class="" action="index.html" method="post">
+                <table class="striped row">
+                  <thead class="teal-text row">
+                    <tr class="">
+                      <th class=" col s11" >Missions</th>
+                      <th class=" col s1">Etat</th>
+                    </tr>
+                  </thead>
+
+                  <!-- mettre la boucle ici -->
+                  <tbody class="row white">
+                    <!-- 1 tab by step  -->
+                    <?php
+                    foreach($get_all_missions as $mission)
+                    {
+                      if ($mission['etape_ID'] == $step['ID']) {
+                    ?>
+                    <tr class="">
+                      <td class="col s11">
+                        <input type="checkbox" name="<?php echo $mission['ID'];?>" id="<?php echo $mission['ID'];?>" value="<?php echo $mission['ID'];?>">
+                        <label for="<?php echo $mission['ID'];?>">
+                          <?php echo $mission['intitule_mission']; ?>
+                        </label>
+                      </td>
+                      <td <?php if ($step['etat'] == 0) { echo 'class="center col s1"> <i class="fa fa-circle red-text" aria-hidden="true"></i>';} else { echo '"center col S1"> <i class="green-text fa fa-circle" aria-hidden="true"></i>';}?></td>
+                    </tr>
+                    <?php
+                      }  // end of condition
+                    } // end loop for missions
+
+                     ?>
+                  </tbody>
+                </table>
+                <div class="" style="text-align : center;">
+
                   <?php
+                  $is_there_a_mission = 0;
                   foreach($get_all_missions as $mission)
                   {
                     if ($mission['etape_ID'] == $step['ID']) {
+                      $is_there_a_mission++;
+                    }
+                  }// end of loop
+
+                    if ($is_there_a_mission != 0 ) {
                   ?>
-                  <tr class="">
-                    <td class="col s11">
-                      <input type="checkbox" name="<?php echo $mission['ID'];?>" id="<?php echo $mission['ID'];?>" value="<?php echo $mission['ID'];?>">
-                      <label for="<?php echo $mission['ID'];?>">
-                        <?php echo $mission['intitule_mission']; ?>
-                      </label>
-                    </td>
-                    <td <?php if ($step['etat'] == 0) { echo 'class="center col s1"> <i class="fa fa-circle red-text" aria-hidden="true"></i>';} else { echo '"center col S1"> <i class="green-text fa fa-circle" aria-hidden="true"></i>';}?></td>
-                  </tr>
+                  <!-- <input type="hidden" name="delete_mission" value="delete_mission"> -->
+                  <input type="submit" class="btn teal darken-1" style="margin-top : 5px;" name="" value="effacer">
+                  <input type="submit" class="btn teal darken-1" style="margin-top : 5px;" name="" value="valider">
+                  <input type="submit" class="btn teal darken-1" style="margin-top : 5px;" name="" value="à faire">
+                  <p style="text-align : center ;">- ou - </p>
                   <?php
-                    }  // end of condition
-                  } // end loop for missions
-
-                   ?>
-                </tbody>
-              </table>
-              <div class="" style="text-align : center;">
-
-                <?php
-                $is_there_a_mission = 0;
-                foreach($get_all_missions as $mission)
-                {
-                  if ($mission['etape_ID'] == $step['ID']) {
-                    $is_there_a_mission++;
                   }
-                }// end of loop
+                   ?>
 
-                  if ($is_there_a_mission != 0 ) {
-                ?>
-                <input type="submit" class="btn teal darken-1" style="margin-top : 5px;" name="" value="effacer">
-                <input type="submit" class="btn teal darken-1" style="margin-top : 5px;" name="" value="valider">
-                <input type="submit" class="btn teal darken-1" style="margin-top : 5px;" name="" value="à faire">
-                <p style="text-align : center ;">- ou - </p>
-                <?php
-                }
-                 ?>
-
-                <!-- Modal Trigger -->
-                <a class="waves-effect waves-light btn teal darken-1 modal-trigger" style="margin-top : 5px;" href="#ajout_mission"> Ajouter une mission</a>
-
-
-
-              </div>
-            </form>
-
-            <!-- Modal Structure -->
-            <div id="ajout_mission" class="modal">
-              <div class="modal-content">
-                <!-- form to add a mission -->
-                <div class="row">
-                  <form class="" action="http://localhost/moreauandsons/controler/espace_admin/missions_.php?id_step=<?php echo$step['ID'];?>" method="post">
-                    <div class="input-field col s9">
-                      <input id="mission_name" name="mission_name" type="text" class="validate" required>
-                      <label for="mission_name">Nouvelle mission</label>
-                    </div>
-                    <input class="input-field col s3 btn white teal-text text-darken-1" type="submit" name="" value="ajouter">
-                  </form>
+                  <!-- Modal Trigger -->
+                  <a class="waves-effect waves-light btn teal darken-1 modal-trigger" style="margin-top : 5px;" href="#mission_<?php echo $step['ID']?>"> Ajouter une mission</a>
 
                 </div>
+              </form>
+
+              <!-- Modal Structure -->
+              <div id="mission_<?php echo $step['ID']?>" class="modal">
+                <div class="modal-content">
+                  <!-- form to add a mission -->
+                  <div class="row">
+                    <form class="" action="http://localhost/moreauandsons/controler/espace_admin/missions_.php?id_step=<?php echo$step['ID'];?>" method="post">
+                      <div class="input-field col s9">
+                        <input id="mission_name" name="mission_name" type="text" class="validate" required>
+                        <label for="mission_name">Nouvelle mission</label>
+                      </div>
+                      <input class="input-field col s3 btn white teal-text text-darken-1" type="submit" name="" value="ajouter">
+                    </form>
+
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">X</a>
+                </div>
               </div>
-              <div class="modal-footer">
-                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">X</a>
-              </div>
+
             </div>
 
           </div>
 
+
+        </li>
+
+      <?php  } // end of loop step
+       ?>
+
+      </ul>
+
+
+      <div class="new-step row">
+        <!-- form to create a new step -->
+        <div class="col s12" style="border:1px solid lightgrey; box-shadow : 0px 1px 2px gray; padding: 0;">
+          <form class="" action="http://localhost/moreauandsons/controler/espace_admin/details_.php" method="post">
+            <H5 class="center white-text grey " style="text-shadow : 0 1px 1px grey; margin :0; padding: 10px 10px 20px 10px; border-bottom : 3px solid teal ">Pour ajouter une étape : </h5>
+              <div class="input-field col s6">
+                <input id="name_step" name="name_step" type="text" class="validate" required>
+                <label for="name_step">Intitulé de l'étape</label>
+              </div>
+              <div class="input-field col s6">
+                <input id="date_step" name="date_step" type="text" class="validate" required>
+                <label for="date_step">Délai prévu <em>(format DD/MM/YYYY)</em></label>
+              </div>
+              <input class="btn teal darken-1 right" type="submit" name="" value="Ajouter étape">
+            </form>
+          </div>
+          <!-- END form to create a new step -->
         </div>
 
-
-      </li>
-
-    <?php  } // end of loop step
-     ?>
-
-    </ul>
-
-
-    <div class="new-step row">
-      <!-- form to create a new step -->
-      <div class="col s12 m6 l8 offset-l4" style="border:1px solid lightgrey; box-shadow : 0px 2px 2px lightgray;">
-        <form class="" action="http://localhost/moreauandsons/controler/espace_admin/details_.php" method="post">
-          <H5 class="col s12 center teal-text text-darken-1">Pour ajouter une étape : </h5>
-            <div class="input-field col s6">
-              <input id="name_step" name="name_step" type="text" class="validate" required>
-              <label for="name_step">Intitulé de l'étape</label>
-            </div>
-            <div class="input-field col s6">
-              <input id="date_step" name="date_step" type="text" class="validate" required>
-              <label for="date_step">Délai prévu <em>(format DD/MM/YYYY)</em></label>
-            </div>
-            <input class="btn teal darken-1 right" type="submit" name="" value="Ajouter étape">
-          </form>
-        </div>
-        <!-- END form to create a new step -->
-      </div>
+    </div>
   </div>
 
 
