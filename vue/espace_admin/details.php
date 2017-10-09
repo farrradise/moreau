@@ -64,13 +64,13 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
 
       <!-- partie collapsible  -->
       <ul class="collapsible col s12" data-collapsible="accordion" style="padding: 0;">
-        <H5 class="center white-text grey" style="text-shadow : 0 1px 1px grey; margin :0; padding: 10px 10px 20px 10px; border-bottom : 3px solid teal ">Détails des étapes </h5>
+        <H5 class="center white-text blue-grey darken-1" style="text-shadow : 0 1px 1px grey; margin :0; padding: 10px 10px 20px 10px; border-bottom : 3px solid teal ">Détails des étapes </h5>
 
-        <li class="teal-text text-darken-1">
+        <li class="blue-grey-text text-darken-1">
           <div class="row collapsible-header">
-            <span class="col s8">Intitulé de l'étape</span>
-            <span class="col s3">Délai</span>
-            <span class="col S1" ></span>
+            <span class="col s8 teal-text">Intitulé de l'étape</span>
+            <span class="col s3 teal-text">Délai</span>
+            <span class="col S1"></span>
           </div>
         </li>
 
@@ -86,8 +86,8 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
           <!-- descriptif d'une étape -->
           <div class="row collapsible-header">
             <span><a class="trash" href="index.html"><i class="fa fa-trash teal-text" aria-hidden="true"></i></a></span>
-            <span class="col s7 offset-1"><?php echo$step['intitule_etape']; ?></span>
-            <span class="col s2"><?php echo$step['date_expiration']; ?></span>
+            <span class="col s7 offset-1 teal-text"><?php echo$step['intitule_etape']; ?></span>
+            <span class="col s2 teal-text"><?php echo$step['date_expiration']; ?></span>
             <span <?php if ($step['etat'] == 0) { echo 'class="col s1 center"> <i class="fa fa-circle fa-2x red-text" aria-hidden="true"></i>';} else { echo '"col S1 center"> <i class="green-text fa fa-circle fa-2x" aria-hidden="true"></i>';}?></span>
           </div>
 
@@ -96,9 +96,9 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
           <div class="collapsible-body">
 
             <div class="tableau">
-              <form class="" action="index.html" method="post">
+              <form class="" action="http://localhost/moreauandsons/controler/espace_admin/action_.php" method="post">
                 <table class="striped row">
-                  <thead class="teal-text row">
+                  <thead class="blue-grey-text row">
                     <tr class="">
                       <th class=" col s11" >Missions</th>
                       <th class=" col s1">Etat</th>
@@ -115,7 +115,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
                     ?>
                     <tr class="">
                       <td class="col s11">
-                        <input type="checkbox" name="<?php echo $mission['ID'];?>" id="<?php echo $mission['ID'];?>" value="<?php echo $mission['ID'];?>">
+                        <input type="checkbox" name="mission_<?php echo $mission['ID'];?>" id="<?php echo $mission['ID'];?>" value="<?php echo $mission['ID'];?>">
                         <label for="<?php echo $mission['ID'];?>">
                           <?php echo $mission['intitule_mission']; ?>
                         </label>
@@ -142,17 +142,17 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
 
                     if ($is_there_a_mission != 0 ) {
                   ?>
-                  <!-- <input type="hidden" name="delete_mission" value="delete_mission"> -->
-                  <input type="submit" class="btn teal darken-1" style="margin-top : 5px;" name="" value="effacer">
-                  <input type="submit" class="btn teal darken-1" style="margin-top : 5px;" name="" value="valider">
-                  <input type="submit" class="btn teal darken-1" style="margin-top : 5px;" name="" value="à faire">
+                  <input type="hidden" name="action" value="submit" />
+                  <input type="submit" class="btn blue-grey darken-1" style="margin-top : 5px;" name="submit" value="effacer">
+                  <input type="submit" class="btn blue-grey darken-1" style="margin-top : 5px;" name="submit" value="valider">
+                  <input type="submit" class="btn blue-grey darken-1" style="margin-top : 5px;" name="submit" value="à faire">
                   <p style="text-align : center ;">- ou - </p>
                   <?php
                   }
                    ?>
 
                   <!-- Modal Trigger -->
-                  <a class="waves-effect waves-light btn teal darken-1 modal-trigger" style="margin-top : 5px;" href="#mission_<?php echo $step['ID']?>"> Ajouter une mission</a>
+                  <a class="waves-effect waves-light btn blue-grey darken-1 modal-trigger" style="margin-top : 5px;" href="#mission_<?php echo $step['ID']?>"> Ajouter une mission</a>
 
                 </div>
               </form>
@@ -194,7 +194,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
         <!-- form to create a new step -->
         <div class="col s12" style="border:1px solid lightgrey; box-shadow : 0px 1px 2px gray; padding: 0;">
           <form class="" action="http://localhost/moreauandsons/controler/espace_admin/details_.php" method="post">
-            <H5 class="center white-text grey " style="text-shadow : 0 1px 1px grey; margin :0; padding: 10px 10px 20px 10px; border-bottom : 3px solid teal ">Pour ajouter une étape : </h5>
+            <H5 class="blue-grey darken-1 center white-text" style="text-shadow : 0 1px 1px grey; margin :0; padding: 10px 10px 20px 10px; border-bottom : 3px solid teal ">Pour ajouter une étape : </h5>
               <div class="input-field col s6">
                 <input id="name_step" name="name_step" type="text" class="validate" required>
                 <label for="name_step">Intitulé de l'étape</label>
@@ -203,7 +203,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
                 <input id="date_step" name="date_step" type="text" class="validate" required>
                 <label for="date_step">Délai prévu <em>(format DD/MM/YYYY)</em></label>
               </div>
-              <input class="btn teal darken-1 right" type="submit" name="" value="Ajouter étape">
+              <input class="btn blue-grey darken-1 right" type="submit" name="" value="Ajouter étape">
             </form>
           </div>
           <!-- END form to create a new step -->
