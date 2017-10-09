@@ -68,7 +68,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
             <p>Remise des clés : <?php echo $projet['delai']?></p>
             <p>Client : <?php echo $projet['nom_client']?> </p>
             <p>Ville : <?php echo $projet['ville']?> </p>
-            <p>Budget : <?php echo $projet['budget']?>€ <?php echo $projet['ID']?></p>
+            <p>Budget : <?php echo $projet['budget']?>€</p>
           </div>
 
           <div class="card-reveal">

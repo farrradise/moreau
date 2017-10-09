@@ -63,6 +63,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
 
     <!-- partie collapsible  -->
     <ul class="collapsible col s12 m6 l8 offset-l1" data-collapsible="accordion">
+      <H5 class="col s12 center teal-text text-darken-1">Détails des étapes </h5>
 
       <li class="teal-text text-darken-1">
         <div class="row collapsible-header">
@@ -95,10 +96,10 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
 
           <div class="tableau">
             <form class="" action="index.html" method="post">
-              <table class="teal striped row">
-                <thead class="white-text row">
+              <table class="striped row">
+                <thead class="teal-text row">
                   <tr class="">
-                    <th class=" col s11" >Mission</th>
+                    <th class=" col s11" >Missions</th>
                     <th class=" col s1">Etat</th>
                   </tr>
                 </thead>
@@ -127,20 +128,54 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
                    ?>
                 </tbody>
               </table>
-            </form>
-          </div>
+              <div class="" style="text-align : center;">
+
+                <?php
+                $is_there_a_mission = 0;
+                foreach($get_all_missions as $mission)
+                {
+                  if ($mission['etape_ID'] == $step['ID']) {
+                    $is_there_a_mission++;
+                  }
+                }// end of loop
+
+                  if ($is_there_a_mission != 0 ) {
+                ?>
+                <input type="submit" class="btn teal darken-1" style="margin-top : 5px;" name="" value="effacer">
+                <input type="submit" class="btn teal darken-1" style="margin-top : 5px;" name="" value="valider">
+                <input type="submit" class="btn teal darken-1" style="margin-top : 5px;" name="" value="à faire">
+                <p style="text-align : center ;">- ou - </p>
+                <?php
+                }
+                 ?>
+
+                <!-- Modal Trigger -->
+                <a class="waves-effect waves-light btn teal darken-1 modal-trigger" style="margin-top : 5px;" href="#ajout_mission"> Ajouter une mission</a>
 
 
 
-          <!-- form to add a mission -->
-          <div class="row">
-            <form class="" action="http://localhost/moreauandsons/controler/espace_admin/missions_.php?id_step=<?php echo$step['ID'];?>" method="post">
-              <div class="input-field col s9">
-                <input id="mission_name" name="mission_name" type="text" class="validate" required>
-                <label for="mission_name">Nouvelle mission</label>
               </div>
-              <input class="input-field col s3 btn white teal-text text-darken-1" type="submit" name="" value="ajouter">
             </form>
+
+            <!-- Modal Structure -->
+            <div id="ajout_mission" class="modal">
+              <div class="modal-content">
+                <!-- form to add a mission -->
+                <div class="row">
+                  <form class="" action="http://localhost/moreauandsons/controler/espace_admin/missions_.php?id_step=<?php echo$step['ID'];?>" method="post">
+                    <div class="input-field col s9">
+                      <input id="mission_name" name="mission_name" type="text" class="validate" required>
+                      <label for="mission_name">Nouvelle mission</label>
+                    </div>
+                    <input class="input-field col s3 btn white teal-text text-darken-1" type="submit" name="" value="ajouter">
+                  </form>
+
+                </div>
+              </div>
+              <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">X</a>
+              </div>
+            </div>
 
           </div>
 
@@ -152,11 +187,14 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
     <?php  } // end of loop step
      ?>
 
+    </ul>
+
+
+    <div class="new-step row">
       <!-- form to create a new step -->
-      <li class="new-step">
-        <div class="">
-          <form class="" action="http://localhost/moreauandsons/controler/espace_admin/details_.php" method="post">
-            <p class="col s12 btn center teal darken-1">Pour ajouter une étape : </p>
+      <div class="col s12 m6 l8 offset-l4" style="border:1px solid lightgrey; box-shadow : 0px 2px 2px lightgray;">
+        <form class="" action="http://localhost/moreauandsons/controler/espace_admin/details_.php" method="post">
+          <H5 class="col s12 center teal-text text-darken-1">Pour ajouter une étape : </h5>
             <div class="input-field col s6">
               <input id="name_step" name="name_step" type="text" class="validate" required>
               <label for="name_step">Intitulé de l'étape</label>
@@ -168,13 +206,9 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
             <input class="btn teal darken-1 right" type="submit" name="" value="Ajouter étape">
           </form>
         </div>
-      </li>
-      <!-- END form to create a new step -->
-
-    </ul>
-
+        <!-- END form to create a new step -->
+      </div>
   </div>
-
 
 
 
