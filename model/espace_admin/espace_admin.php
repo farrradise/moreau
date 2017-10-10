@@ -35,6 +35,7 @@ function get_projects($id)
     ville
     FROM projets
     WHERE admin_ID = :admin_ID
+    AND etat_archive = 0
     ORDER BY delai DESC');
     $req -> execute(array('admin_ID'=>$id));
     $projets = $req->fetchAll();
@@ -161,4 +162,146 @@ function get_all_missions()
 
 
     return $get_all_missions;
+}
+
+
+function validate_mission($id)
+{
+  global $bdd;
+
+  $id = (int) $id;
+  $req = $bdd->prepare('UPDATE missions
+  SET etat = :etat
+  WHERE ID = :id');
+  $req -> execute(array(
+    'id' => $id,
+    'etat' => 1));
+
+}
+
+
+function unvalidate_mission($id)
+{
+  global $bdd;
+
+  $id = (int) $id;
+  $req = $bdd->prepare('UPDATE missions
+  SET etat = :etat
+  WHERE ID = :id');
+  $req -> execute(array(
+    'id' => $id,
+    'etat' => 0));
+
+}
+
+
+
+function delete_mission($id)
+{
+  global $bdd;
+
+  $id = (int) $id;
+  $req = $bdd->prepare('DELETE FROM missions
+  WHERE ID = :id');
+  $req -> execute(array('id' => $id));
+
+}
+
+
+function update_step_state($id, $etat)
+{
+  global $bdd;
+
+  $id = (int) $id;
+  $etat = (int) $etat;
+
+  $req = $bdd->prepare('UPDATE etapes
+  SET etat = :etat;
+  WHERE ID = :id');
+  $req -> execute(array(
+    'id' => $id,
+  'etat' => $etat));
+}
+
+
+
+
+
+function get_all_missions_by_step($id_step)
+{
+    global $bdd;
+
+    $req = $bdd->prepare('SELECT *
+    FROM missions
+    WHERE etape_ID = :etape_ID');
+    $req -> execute(array(
+      'etape_ID'=> $id_step,
+    ));
+
+    $all_steps = $req->fetchAll();
+    return $all_steps;
+}
+
+
+
+function delete_step($ID)
+{
+  global $bdd;
+
+  $ID = (int) $ID;
+  $req = $bdd->prepare('DELETE FROM etapes
+    WHERE ID = :id;');
+  $req -> execute(array('id' => $ID));
+
+}
+
+
+function delete_project($ID)
+{
+  global $bdd;
+
+  $ID = (int) $ID;
+  $req = $bdd->prepare('DELETE FROM projets
+    WHERE ID = :id;');
+  $req -> execute(array('id' => $ID));
+
+}
+
+
+
+function archive_project($ID)
+{
+  global $bdd;
+
+  $ID = (int) $ID;
+  $req = $bdd->prepare('UPDATE projets
+    SET etat_archive = 1
+    WHERE ID = :id;');
+  $req -> execute(array('id' => $ID));
+
+}
+
+
+
+function get_archived_projects($id)
+{
+    global $bdd;
+
+    $req = $bdd->prepare('SELECT ID,
+    nom_projet,
+    DATE_FORMAT(delai, \'%d/%m/%Y\') AS delai,
+    DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS date_creation,
+    nom_client,
+    budget,
+    categorie,
+    ville
+    FROM projets
+    WHERE admin_ID = :admin_ID
+    AND etat_archive = 1
+    ORDER BY delai DESC');
+    $req -> execute(array('admin_ID'=>$id));
+    $projets = $req->fetchAll();
+
+
+    return $projets;
 }

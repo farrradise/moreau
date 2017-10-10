@@ -85,7 +85,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
         <li>
           <!-- descriptif d'une étape -->
           <div class="row collapsible-header">
-            <span><a class="trash" href="index.html"><i class="fa fa-trash teal-text" aria-hidden="true"></i></a></span>
+            <span><a class="trash" href="http://localhost/moreauandsons/controler/espace_admin/delete_step.php?id_step=<?php echo $step['ID'];?>"><i class="fa fa-trash teal-text" aria-hidden="true"></i></a></span>
             <span class="col s7 offset-1 teal-text"><?php echo$step['intitule_etape']; ?></span>
             <span class="col s2 teal-text"><?php echo$step['date_expiration']; ?></span>
             <span <?php if ($step['etat'] == 0) { echo 'class="col s1 center"> <i class="fa fa-circle fa-2x red-text" aria-hidden="true"></i>';} else { echo '"col S1 center"> <i class="green-text fa fa-circle fa-2x" aria-hidden="true"></i>';}?></span>
@@ -120,7 +120,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
                           <?php echo $mission['intitule_mission']; ?>
                         </label>
                       </td>
-                      <td <?php if ($step['etat'] == 0) { echo 'class="center col s1"> <i class="fa fa-circle red-text" aria-hidden="true"></i>';} else { echo '"center col S1"> <i class="green-text fa fa-circle" aria-hidden="true"></i>';}?></td>
+                      <td <?php if ($mission['etat'] == 0) { echo 'class="center col s1"> <i class="fa fa-circle red-text" aria-hidden="true"></i>';} else { echo 'class="center col s1"> <i class="green-text fa fa-circle" aria-hidden="true"></i>';}?></td>
                     </tr>
                     <?php
                       }  // end of condition

@@ -25,3 +25,8 @@ $('.datepicker').pickadate({
  setTimeout(function () {
      $(".wrong").fadeOut(300)
  }, 6000);
+
+
+ $(document).ready(function() {
+    $('select').material_select();
+  });

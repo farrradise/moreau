@@ -4,9 +4,9 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
 
    <div class="nav-content">
      <ul class="tabs tabs-transparent">
-       <li class="tab"><a class="active" href="#encours">Projets en cours</a></li>
+       <li class="tab"><a class="<?php if(!ISSET($_SESSION['sorting'])) { echo "active";}?>" href="#encours">Projets en cours</a></li>
        <li class="tab" style="position : relative; left : 1%;"><a href="#creation">Créer un projet</a></li>
-       <li class="tab" style="position : relative; left : 3%;"><a href="#archives">Les archives</a></li>
+       <li class="tab" style="position : relative; left : 3%;"><a class="<?php if(ISSET($_SESSION['sorting'])) { echo "active";}?>" href="#archives">Les archives</a></li>
     </ul>
   </div>
 </nav>
@@ -92,7 +92,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
                 <tr>
                     <td><a class="black-text" href="http://localhost/moreauandsons/controler/espace_admin/details.php?id_projet=<?php echo $projet['ID'];?>"><?php echo $step['intitule_etape'] ?></a></td>
                     <td><?php echo $step['date_expiration'] ?></td>
-                    <td class=<?php if ($step['etat'] == 0) { echo '"red-text center"> <i class="fa fa-circle fa-2x" aria-hidden="true"></i>';} else { echo '"green-text center"> <i class="fa fa-circle fa-2x" aria-hidden="true"></i>">ok';}?></td>
+                    <td <?php if ($step['etat'] == 0) { echo 'class="red-text center"> <i class="fa fa-circle" aria-hidden="true"></i>';} else { echo 'class="green-text center"> <i class="fa fa-circle" aria-hidden="true"></i>';}?></td>
                 </tr>
 
                 <?php
@@ -103,8 +103,8 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
             </table>
           </div>
           <div class="card-action row">
-            <a title="supprimer le projet, attention action irréversible" class="col s1" href="#"> <i class="fa fa-trash teal-text" aria-hidden="true"></i></a>
-            <a title="archiver le projet, utile lorsqu'il est terminé" class="col s1" href="#"><i class="fa fa-folder-open teal-text" aria-hidden="true"></i></a>
+            <a title="supprimer le projet, attention action irréversible" class="col s1" href="http://localhost/moreauandsons/controler/espace_admin/delete_project.php?id_projet=<?php echo $projet['ID'];?>"> <i class="fa fa-trash teal-text" aria-hidden="true"></i></a>
+            <a title="archiver le projet, utile lorsqu'il est terminé" class="col s1" href="http://localhost/moreauandsons/controler/espace_admin/delete_project.php?archive=<?php echo $projet['ID'];?>"><i class="fa fa-folder-open teal-text" aria-hidden="true"></i></a>
             <a class="teal-text" href="http://localhost/moreauandsons/controler/espace_admin/details.php?id_projet=<?php echo $projet['ID'];?>">ajout étape</a>
           </div>
         </div>
@@ -160,7 +160,48 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
   </div>
 
   <!-- ICI stocker tous les projets typé archivé  + plus tard donne possibilité de trier par categorie-->
-  <div id="archives" class="col s12">Test 4</div>
+  <div id="archives" class="center row">
+
+    <table class="highlight col s12 m6">
+        <thead>
+          <tr>
+              <th>Nom du projet</th>
+              <th>Nom du client</th>
+              <th>Date de remise des clés</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Jonathan</td>
+            <td>Lollipop</td>
+            <td>$7.00</td>
+          </tr>
+        </tbody>
+    </table>
+
+    <!-- le detail du projet -->
+    <div class="col s12 m5 offset-m1">
+      la carte
+    </div>
+
+    <form class=" col s12 m8 offset-m2 blue-grey darken-2 white-text" action="index.html" method="post" style="margin-top : 1em; border-radius : 5px; padding : 10px;">
+      <!-- <p>Pour plus de lisibilité, vous avez la possibilité d'utiliser votre outil de tri ci-dessous.</p> -->
+      <div class="input-field col s12 m8">
+        <select>
+          <option value="" disabled selected>Votre catégorie</option>
+          <option value="1">Extension</option>
+          <option value="2">Surélévation</option>
+          <option value="3">Construction</option>
+          <option value="3">Démolition</option>
+          <option value="3">Rénovations</option>
+        </select>
+        <label class="teal-text text-lighten-2">Choisissez une option pour trier</label>
+      </div>
+      <input type="submit" style="margin-top: 20px;" class="btn col s4 m2 offset-m1" name="" value="trier">
+    </form>
+
+  </div>
 
 
 
