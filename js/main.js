@@ -30,3 +30,17 @@ $('.datepicker').pickadate({
  $(document).ready(function() {
     $('select').material_select();
   });
+
+
+
+
+ function afficherdetail(id) {
+     $('.archive-a-cacher').hide();
+     $('.'+id+'').show();
+  }
+
+
+  function sorting_table(value) {
+    $('.ligne-archive').hide();
+    $('.'+value).show();
+   }

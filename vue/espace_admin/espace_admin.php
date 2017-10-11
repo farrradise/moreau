@@ -160,46 +160,98 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
   </div>
 
   <!-- ICI stocker tous les projets typé archivé  + plus tard donne possibilité de trier par categorie-->
-  <div id="archives" class="center row">
+  <div style="min-height : 450px;" id="archives" class="center row">
 
-    <table class="highlight col s12 m6">
+    <table class="highlight col s12 m7">
         <thead>
-          <tr>
-              <th>Nom du projet</th>
-              <th>Nom du client</th>
-              <th>Date de remise des clés</th>
+          <tr class="row">
+              <th class="col s7">Nom du projet</th>
+              <th class="col s3">Nom du client</th>
+              <th class="col s2">Date</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr>
-            <td>Jonathan</td>
-            <td>Lollipop</td>
-            <td>$7.00</td>
+          <!-- ici mettre une condition pour verifier qu'aucune action de triage n'ait été demandé -->
+          <!-- si non mettre tous les projets typé comme archivé grâce à une boucle-->
+          <?php
+          foreach ($projets_archives as $archive) {
+          ?>
+          <tr class="row ligne-archive <?php echo $archive['categorie'] ?>">
+            <td class="col s7"><button type="button" onclick="afficherdetail(this.id);" id="<?php echo "archive-cache".$archive['ID']; ?>"> <?php echo $archive['nom_projet']; ?></button></td>
+            <td class="col s3"><span class="blue-grey-text"> <?php echo $archive['nom_client']; ?></span></td>
+            <td class="col s2"><span class="blue-grey-text"> <?php echo $archive['delai']; ?></span></td>
           </tr>
+
+          <!-- CARTE DETAILLE DU PROJET ARCHIVE -->
+          <div style="max-height : 500px; overflow-y : auto; position : absolute; right : 3%; padding : 10px; border-radius : 5px; text-align: justify;" class="archive-a-cacher archive-cache<?php echo $archive['ID'];?> white-text blue-grey darken-2 col s11 offset-s1 m4 offset-l0 xl3">
+
+              <div class="card-content">
+                <h4 class="card-title activator teal-text text-lighten-2 center"><?php echo $archive['nom_projet'];?></h4>
+                <ul style="border-top : 3px solid white; padding-top : 5px;" class="center">
+                  <li>Démarrage : <?php echo $archive['date_creation']?></li>
+                  <li>Remise des clés : <?php echo $archive['delai']?></li>
+                  <li>Client : <?php echo $archive['nom_client']?></li>
+                  <li>Ville : <?php echo $archive['ville']?></li>
+                  <li>Budget : <?php echo $archive['budget']?>€</li>
+                </ul>
+
+                <div class="">
+                  <h5 style="border-top : 3px solid white; padding-top : 5px;" class="card-title teal-text text-lighten-2 center">Liste étapes</h5>
+                  <ul style="border-top : 3px solid white; padding-top : 5px;">
+                    <li class="row col s12">
+                        <span class="col s7">
+                          Intitulé
+                        </span>
+                        <span class="col s3">
+                          Délai
+                        </span>
+                        <span class="col s2">
+                          Etat
+                        </span>
+                    </li>
+                    <?php
+                    foreach ($steps as $step) {
+                      if ($step['ID_projets'] == $archive['ID']) {
+                    ?>
+                    <li>
+                        <span class="col s7"><?php echo $step['intitule_etape'] ?></span>
+                        <span class="col s3"><?php echo $step['date_expiration'] ?></span>
+                        <span  <?php if ($step['etat'] == 0) { echo 'class="col s2 red-text center"> <i class="fa fa-circle" aria-hidden="true"></i>';} else { echo 'class="col s2 green-text center"> <i class="fa fa-circle" aria-hidden="true"></i>';}?></span>
+                    </li>
+
+                    <?php
+                      }
+                    } ?>
+
+                  </ul>
+                </div>
+              </div>
+
+          </div>
+          <!-- FIN DETAIL PROJET -->
+
+        <?php
+          } // end of loop
+         ?>
         </tbody>
     </table>
 
-    <!-- le detail du projet -->
-    <div class="col s12 m5 offset-m1">
-      la carte
-    </div>
-
-    <form class=" col s12 m8 offset-m2 blue-grey darken-2 white-text" action="index.html" method="post" style="margin-top : 1em; border-radius : 5px; padding : 10px;">
-      <!-- <p>Pour plus de lisibilité, vous avez la possibilité d'utiliser votre outil de tri ci-dessous.</p> -->
-      <div class="input-field col s12 m8">
-        <select>
-          <option value="" disabled selected>Votre catégorie</option>
-          <option value="1">Extension</option>
-          <option value="2">Surélévation</option>
-          <option value="3">Construction</option>
-          <option value="3">Démolition</option>
-          <option value="3">Rénovations</option>
-        </select>
-        <label class="teal-text text-lighten-2">Choisissez une option pour trier</label>
-      </div>
-      <input type="submit" style="margin-top: 20px;" class="btn col s4 m2 offset-m1" name="" value="trier">
-    </form>
+    <form class=" col s12 m6 l3 offset-l4 blue-grey darken-2 white-text" action="" method="post" style="margin-top : 1em; border-radius : 5px; padding : 10px;">
+     <!-- <p>Pour plus de lisibilité, vous avez la possibilité d'utiliser votre outil de tri ci-dessous.</p> -->
+     <div class="input-field col s12">
+       <select onchange="sorting_table(this.value);">
+         <option value="" disabled selected>Votre catégorie</option>
+         <option value="extension">Extension</option>
+         <option value="surelevation">Surélévation</option>
+         <option value="construction">Construction</option>
+         <option value="demolition">Démolition</option>
+         <option value="renovation">Rénovations</option>
+       </select>
+       <label class="teal-text text-lighten-2">Choisissez une option pour trier</label>
+     </div>
+     <!-- <input type="submit" style="margin-top: 20px;" class="btn col s4 m2 offset-m1" name="" value="trier"> -->
+   </form>
 
   </div>
 
