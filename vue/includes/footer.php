@@ -6,7 +6,7 @@
            <p class="grey-text text-lighten-4">Cette interface est à destination
              du personnel de l'entreprise, si vous êtes un particulier ou l'un de nos clients, rendez-vous sur ce site.
              <br>
-             <a class="grey-text text-lighten-1" style="font-weight :bold; font-style: italic;" href="#">www.moreau&sons.fr</a>
+             <a class="real-site grey-text text-lighten-1" href="#">www.moreau&sons.fr</a>
            </p>
          </div>
          <div class="col l4 offset-l2 s12">

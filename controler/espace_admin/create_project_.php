@@ -27,7 +27,6 @@ if (isset($_POST['name_project']) AND isset($_POST['date_real']) AND isset($_POS
 
   // var superglobale ID
   $admin_ID = $_SESSION['id'];
-  // echo  'id : '. $_SESSION['id']. '<br>';
 
   // nom du client
   $name_customer = htmlspecialchars($_POST['name_customer']);

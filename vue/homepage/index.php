@@ -5,7 +5,7 @@
       <main>
         <h4 class="teal-text text-darken-1 center">Nos derniers projets </h4>
         <p></p>
-        <div class="row" style="width : 90%; padding-top : 10px;">
+        <div class="main row">
 
         <?php
 
@@ -83,7 +83,7 @@
                   <tr>
                       <td><?php echo $step['intitule_etape'] ?></td>
                       <td><?php echo $step['date_expiration'] ?></td>
-                      <td class=<?php if ($step['etat'] == 0) { echo '"red-text center"> <i class="fa fa-circle fa-2x" aria-hidden="true"></i>';} else { echo '"green-text center"> <i class="fa fa-circle fa-2x" aria-hidden="true"></i>">ok';}?></td>
+                      <td class=<?php if ($step['etat'] == 0) { echo '"red-text center"> <i class="fa fa-circle fa-2x" aria-hidden="true"></i>';} else { echo '"green-text center"> <i class="fa fa-circle fa-2x" aria-hidden="true"></i>';}?></td>
                   </tr>
 
                   <?php

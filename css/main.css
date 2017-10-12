@@ -6,6 +6,21 @@ body {
 
 }
 
+button {
+  border: none;
+  background-color: inherit;
+}
+
+button:focus {
+  background-color: inherit!important;
+  color: teal;
+  font-weight: bold;
+}
+
+input[type="submit"], .type-submit {
+margin-top : 10px;
+}
+
 /*HEADER*/
 .brand-logo h1 {
   font-size: 35px;
@@ -55,13 +70,19 @@ body {
 }
 .modal-header {
   padding-top: 10px;
-  border: 3px solid rgb(158,158,158);
+  border: 3px solid rgb(84,110,122);
+  border-bottom: 3px solid white;
   text-align: center;
 
 }
 
 .RUsure {
   margin: 10px;
+}
+
+main .main {
+  width : 90%;
+  padding-top : 10px;
 }
 
 /*FORMULAIRE DINSCRIPTION */
@@ -87,6 +108,16 @@ top: 35vh;
 
 
 /*DISPLAY PROJECT ON PERSONAL SPACE */
+
+.nav-content .tab {
+  position : relative;
+  left : 1%;
+}
+
+.nav-content .tab:last-of-type {
+  position : relative;
+  left : 3%;
+}
 
 .projet {
   font-size: 0.9em;
@@ -143,6 +174,13 @@ img.activator {
   padding-top : 10px;
 }
 
+.detail-titre {
+ text-shadow : 0 1px 1px grey;
+ margin :0!important;
+ padding: 10px 10px 20px 10px;
+ border-bottom : 3px solid teal;
+}
+
 .collapsible-header {
   display: flexbox;
   flex-flow : row wrap;
@@ -166,15 +204,58 @@ img.activator {
   margin : 10px;
 }
 
+
 .collapsible-body .tableau {
   margin-top: -40px!important;
 }
 
+
+
+/*mise en page archive */
+#archives {
+  min-height: 450px;
+}
+
+#archives > table {
+  margin-top: 450px;
+}
+
+#archives > table > thead > tr {
+  line-height: 40px;
+}
+
+#archives .archive-a-cacher {
+  max-height : 500px;
+  overflow-y : auto;
+  position : absolute;
+  right : 3%;
+  padding : 10px;
+  border-radius : 5px;
+  text-align: justify;
+}
+
+#archives .add-border {
+  border-top : 3px solid white; padding-top : 5px;
+}
+
+#archives form.to-sort {
+  margin-top : 1em; border-radius : 5px; padding : 10px;
+}
 /*FOOTER */
 footer {
   margin-top: auto;
 }
 
+footer .real-site {
+  font-weight :bold;
+  font-style: italic;
+}
+
+@media (min-width:600px) {
+  #archives > table {
+    margin-top: 0px;
+  }
+}
 
 
 @media(min-width:990px) {

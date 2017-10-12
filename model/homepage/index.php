@@ -17,7 +17,7 @@ function get_20_projects()
       admins.prenom
     FROM  projets
     INNER JOIN admins ON projets.admin_ID = admins.id
-    ORDER BY projets.delai
+    ORDER BY projets.delai DESC
     LIMIT 0, 12
     ');
     $req -> execute();

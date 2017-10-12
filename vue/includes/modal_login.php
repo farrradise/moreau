@@ -1,6 +1,6 @@
 
           <!-- Modal Structure -->
-            <div id="login" class="grey modal">
+            <div id="login" class="blue-grey darken-1 modal">
               <div class="teal darken-1 modal-header">
                 <h3 >Se connecter</h3>
                 <a href="#!" class="modal-action modal-close"><i class="fa fa-times fa-2x" aria-hidden="true"></i></a>

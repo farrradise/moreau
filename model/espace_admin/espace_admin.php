@@ -216,7 +216,7 @@ function update_step_state($id, $etat)
   $etat = (int) $etat;
 
   $req = $bdd->prepare('UPDATE etapes
-  SET etat = :etat;
+  SET etat = :etat
   WHERE ID = :id');
   $req -> execute(array(
     'id' => $id,

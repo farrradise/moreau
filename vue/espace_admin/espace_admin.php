@@ -5,8 +5,8 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
    <div class="nav-content">
      <ul class="tabs tabs-transparent">
        <li class="tab"><a class="<?php if(!ISSET($_SESSION['sorting'])) { echo "active";}?>" href="#encours">Projets en cours</a></li>
-       <li class="tab" style="position : relative; left : 1%;"><a href="#creation">Créer un projet</a></li>
-       <li class="tab" style="position : relative; left : 3%;"><a class="<?php if(ISSET($_SESSION['sorting'])) { echo "active";}?>" href="#archives">Les archives</a></li>
+       <li class="tab" ><a href="#creation">Créer un projet</a></li>
+       <li class="tab" ><a class="<?php if(ISSET($_SESSION['sorting'])) { echo "active";}?>" href="#archives">Les archives</a></li>
     </ul>
   </div>
 </nav>
@@ -21,7 +21,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
     {
     ?>
 
-        <div class="projet card sticky-action col s12 m6 l3" style="">
+        <div class="projet card sticky-action col s12 m6 l3">
           <div class="card-image waves-effect waves-block waves-light">
             <?php
             if ($projet['categorie'] == 'surelevation')
@@ -154,41 +154,38 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
 
 
         <br>
-        <input style="margin-top : 20px; " class="btn" type="submit" name="" value="CREER">
+        <input class="btn" type="submit" name="" value="CREER">
       </form>
     </div>
   </div>
 
   <!-- ICI stocker tous les projets typé archivé  + plus tard donne possibilité de trier par categorie-->
-  <div style="min-height : 450px;" id="archives" class="center row">
+  <div id="archives" class="center row">
 
     <table class="highlight col s12 m7">
-        <thead>
+        <thead class="blue-grey darken-2 white-text">
           <tr class="row">
-              <th class="col s7">Nom du projet</th>
-              <th class="col s3">Nom du client</th>
-              <th class="col s2">Date</th>
+              <th class="col s6">Nom du projet</th>
+              <th class="col s3">Client</th>
+              <th class="col s3">Date</th>
           </tr>
         </thead>
-
         <tbody>
-          <!-- ici mettre une condition pour verifier qu'aucune action de triage n'ait été demandé -->
-          <!-- si non mettre tous les projets typé comme archivé grâce à une boucle-->
           <?php
           foreach ($projets_archives as $archive) {
           ?>
           <tr class="row ligne-archive <?php echo $archive['categorie'] ?>">
-            <td class="col s7"><button type="button" onclick="afficherdetail(this.id);" id="<?php echo "archive-cache".$archive['ID']; ?>"> <?php echo $archive['nom_projet']; ?></button></td>
+            <td class="col s6"><button type="button" onclick="afficherdetail(this.id);" id="<?php echo "archive-cache".$archive['ID']; ?>"> <?php echo $archive['nom_projet']; ?></button></td>
             <td class="col s3"><span class="blue-grey-text"> <?php echo $archive['nom_client']; ?></span></td>
-            <td class="col s2"><span class="blue-grey-text"> <?php echo $archive['delai']; ?></span></td>
+            <td class="col s3"><span class="blue-grey-text"> <?php echo $archive['delai']; ?></span></td>
           </tr>
 
           <!-- CARTE DETAILLE DU PROJET ARCHIVE -->
-          <div style="max-height : 500px; overflow-y : auto; position : absolute; right : 3%; padding : 10px; border-radius : 5px; text-align: justify;" class="archive-a-cacher archive-cache<?php echo $archive['ID'];?> white-text blue-grey darken-2 col s11 offset-s1 m4 offset-l0 xl3">
+          <div class="archive-a-cacher archive-cache<?php echo $archive['ID'];?> white-text blue-grey darken-2 col s11 offset-s1 m4 offset-l0 xl3">
 
               <div class="card-content">
                 <h4 class="card-title activator teal-text text-lighten-2 center"><?php echo $archive['nom_projet'];?></h4>
-                <ul style="border-top : 3px solid white; padding-top : 5px;" class="center">
+                <ul class="add-border center">
                   <li>Démarrage : <?php echo $archive['date_creation']?></li>
                   <li>Remise des clés : <?php echo $archive['delai']?></li>
                   <li>Client : <?php echo $archive['nom_client']?></li>
@@ -197,8 +194,8 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
                 </ul>
 
                 <div class="">
-                  <h5 style="border-top : 3px solid white; padding-top : 5px;" class="card-title teal-text text-lighten-2 center">Liste étapes</h5>
-                  <ul style="border-top : 3px solid white; padding-top : 5px;">
+                  <h5 class="add-border card-title teal-text text-lighten-2 center">Liste étapes</h5>
+                  <ul class="add-border">
                     <li class="row col s12">
                         <span class="col s7">
                           Intitulé
@@ -237,11 +234,11 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
         </tbody>
     </table>
 
-    <form class=" col s12 m6 l3 offset-l4 blue-grey darken-2 white-text" action="" method="post" style="margin-top : 1em; border-radius : 5px; padding : 10px;">
-     <!-- <p>Pour plus de lisibilité, vous avez la possibilité d'utiliser votre outil de tri ci-dessous.</p> -->
+    <form class="to-sort col s12 m6 l4 offset-l3 blue-grey darken-2 white-text" action="" method="post">
      <div class="input-field col s12">
        <select onchange="sorting_table(this.value);">
          <option value="" disabled selected>Votre catégorie</option>
+         <option value="ligne-archive">Toutes</option>
          <option value="extension">Extension</option>
          <option value="surelevation">Surélévation</option>
          <option value="construction">Construction</option>
@@ -250,7 +247,6 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
        </select>
        <label class="teal-text text-lighten-2">Choisissez une option pour trier</label>
      </div>
-     <!-- <input type="submit" style="margin-top: 20px;" class="btn col s4 m2 offset-m1" name="" value="trier"> -->
    </form>
 
   </div>
