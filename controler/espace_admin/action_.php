@@ -3,7 +3,7 @@
 if (isset($_POST['action'])) {
 
 
-    foreach($get_all_missions as $mission)
+    foreach($get_all_missions_by_step as $mission)
     {
       $la_mission =  'mission_'. $mission['ID'];
 
@@ -23,5 +23,4 @@ if (isset($_POST['action'])) {
         }
       }
     } // end loop
-    // header('Location: http://localhost/moreauandsons/controler/espace_admin/details.php?id_projet='.$_SESSION['id_projet']."'");
 }

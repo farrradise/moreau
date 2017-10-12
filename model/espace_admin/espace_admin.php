@@ -224,9 +224,6 @@ function update_step_state($id, $etat)
 }
 
 
-
-
-
 function get_all_missions_by_step($id_step)
 {
     global $bdd;

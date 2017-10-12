@@ -142,6 +142,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/moreauandsons/vue/includes/header.php')
 
                     if ($is_there_a_mission != 0 ) {
                   ?>
+                  <input type="hidden" name="IDstep" value="<?php echo $step['ID'];?>">
                   <input type="hidden" name="action" value="submit" />
                   <input type="submit" class="btn blue-grey darken-1" name="submit" value="effacer">
                   <input type="submit" class="btn blue-grey darken-1" name="submit" value="valider">
